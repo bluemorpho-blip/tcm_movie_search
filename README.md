@@ -1,5 +1,8 @@
 # TcmMovieSearch
 
+run cli:
+./bin/tcm_movies from terminal
+
 first change 9/6/2019
   adding notes.md today
 
