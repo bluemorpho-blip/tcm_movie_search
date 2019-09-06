@@ -1,6 +1,7 @@
 # TcmMovieSearch
 
 first change 9/6/2019
+  adding notes.md today
 
 Search movies on TCM (Turner Classic Movies) by title, genre, actor, director or year released.
 
