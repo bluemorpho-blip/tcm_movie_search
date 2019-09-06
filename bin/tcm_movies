@@ -1,17 +1,6 @@
 #!/usr/bin/env ruby
 
-# tcm_movie_search starts here
+require_relative '../lib/environment'
 
-puts "         ++++++++++                                                    +++++++++"
-puts "          +++++++++                                                   +++++++++"
-puts "          +++++++++                                                  ++++++++"
-puts "          +++++++++      @@@@@@@   @@@        @    @                +++++++"  
-puts "           ++++++++         @     @   @      @ @  @ @              ++++++"
-puts "            +++++++         @    @          @    @   @            +++++"
-puts "              +++++         @    @         @     @    @          ++++"
-puts "               ++++         @     @   @   @            @        +++"
-puts "                +++         @      @@@   @              @      ++"
-puts "                 ++                                           ++"
-puts "               __||__             TCM Movie Search          __||__"
-puts "______________|      |_____________________________________|      |_____________"  
-puts ""
+
+TcmMovieSearch::CLI.new.call
