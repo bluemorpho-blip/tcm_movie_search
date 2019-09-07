@@ -9,6 +9,10 @@
    - actor search
    - director search
       (use a case statement)
+2a. Channge plans: User should be able to search any of the above choices
+    without selecting the search object type - user can just enter search
+    term and the application will search the entire collection and return
+    the movie title, description, year released, actors, director.
 
 3. end search method with return for another search until user enters "exit"
 
@@ -19,3 +23,6 @@ Classes
  - CLI -          where the user interacts with the application
  - Scraper -      where the Scraping is happening!
 
+Objectives:
+  - 9/7/19  build methods in each class to pass parameters to the other classes 
+            and return some value to the method. (Practice working in classes).
