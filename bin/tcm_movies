@@ -2,5 +2,4 @@
 
 require_relative '../lib/environment'
 
-
 TcmMovieSearch::CLI.new.call

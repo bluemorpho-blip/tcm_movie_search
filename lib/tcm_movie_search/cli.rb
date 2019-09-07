@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 # TcmMovieSearch::CLI class will directly interact with the user
+require_relative 'movie_search'
+require_relative 'scraper'
 
 class TcmMovieSearch::CLI
   
@@ -20,14 +22,20 @@ class TcmMovieSearch::CLI
     puts "______________|      |_____________________________________|      |_____________"
     puts ""
     # binding.pry 
+    start_up
    end
    
-   def Searcher
-     puts "search using keyworrd, title, year released, actor, director, genre..."
-     puts "search: "
-     user_input = gets.strip
+   def start_up
+     TcmMovieSearch::MovieSearch.movie_search_test
+     TcmMovieSearch::Scraper.scraper_test
+     puts ""
+     two_classes_for_return
+   end
+   
+   def two_classes_for_return
+     TcmMovieSearch::MovieSearch.pass_to_next_class
+   end
      
-     case user_input
-     when
-  
-end
+   
+     
+ end

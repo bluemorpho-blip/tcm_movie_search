@@ -1,14 +1,13 @@
 #!/usr/bin/env ruby
 
-class TcmMovieSearch::MovieSearch 
+class TcmMovieSearch::MovieSearch
   
-  def movie_search_tester(test_input)
-    if test_input == "movie search class"
-      "you went to the TcmMovieSearch::MovieSearch class"
-    elsif test_input == "scraper"
-      TcmMovieSearch::ScraperHolder.scraper(test_input)
-    else
-      "term not recognized in MovieSearch class"
-    end
+  def self.movie_search_test
+    puts "you have accessed the class TcmMovieSearch::MovieSearch!"
   end
+  
+  def self.pass_to_next_class
+    TcmMovieSearch::Scraper.final_destination
+  end
+  
 end
