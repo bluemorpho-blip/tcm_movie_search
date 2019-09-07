@@ -26,10 +26,16 @@ class TcmMovieSearch::CLI
    end
    
    def start_up
+     puts "CLI.start_up method: calls methods from the movie_search and scraper classes."
      TcmMovieSearch::MovieSearch.movie_search_test
      TcmMovieSearch::Scraper.scraper_test
      puts ""
+     puts "now calling CLI.two_classes_for_return method:"
+     puts "calling TcmMovieSearch::MovieSearch.pass_to_next_class"
+     puts "which calls TcmMovieSearch::Scraper.final_destination"
+     puts "which displays, from the 2nd class called (Scraper):"
      two_classes_for_return
+
    end
    
    def two_classes_for_return
