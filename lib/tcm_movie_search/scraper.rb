@@ -6,13 +6,9 @@ class TcmMovieSearch::Scraper
     puts "you have accessed the class TcmMovieSearch::Scraper!"
   end
   
-  def self.final_destination
-    puts "you've traveled:"
-    puts "CLI => MovieSearch"
-    puts "MovieSearch => Scraper"
-    puts "Scpraper => MovieSearch"
-    puts "MovieSearch => CLI"
-    puts " maybe, you're starting to get it. . . "
+  def self.final_destination(input)
+    input = input + 4
+    input
   end
   
 end

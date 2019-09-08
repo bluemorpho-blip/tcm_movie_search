@@ -6,8 +6,8 @@ class TcmMovieSearch::MovieSearch
     puts "you have accessed the class TcmMovieSearch::MovieSearch!"
   end
   
-  def self.pass_to_next_class
-    TcmMovieSearch::Scraper.final_destination
+  def self.pass_to_next_class(input)
+    TcmMovieSearch::Scraper.final_destination(input)
   end
   
 end

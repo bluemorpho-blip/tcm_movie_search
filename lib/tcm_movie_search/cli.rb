@@ -29,17 +29,13 @@ class TcmMovieSearch::CLI
      puts "CLI.start_up method: calls methods from the movie_search and scraper classes."
      TcmMovieSearch::MovieSearch.movie_search_test
      TcmMovieSearch::Scraper.scraper_test
-     puts ""
-     puts "now calling CLI.two_classes_for_return method:"
-     puts "calling TcmMovieSearch::MovieSearch.pass_to_next_class"
-     puts "which calls TcmMovieSearch::Scraper.final_destination"
-     puts "which displays, from the 2nd class called (Scraper):"
-     two_classes_for_return
+     two_classes_for_return(10)
 
    end
    
-   def two_classes_for_return
-     TcmMovieSearch::MovieSearch.pass_to_next_class
+   def two_classes_for_return(input)
+     
+     puts "returning from scraper is: #{TcmMovieSearch::MovieSearch.pass_to_next_class(input)}"
    end
      
    
