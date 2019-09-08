@@ -40,12 +40,15 @@ class TcmMovieSearch::CLI
    def search
      puts "search:"
      search = gets.strip.downcase
-     while search != "exit"
-      # search @@all objects for matches
-      search_results(search)
-     end
-     puts"exit"
-   end
+     case search
+       when "dorian gray"
+         search_results(search)
+       when !"dorian gray"
+         "no results found for #{search}."
+       when "exit"
+        # search @@all objects for matches
+      end
+    end
 
    def search_results(search)
      puts "search results for: #{search}"
