@@ -26,3 +26,8 @@ Classes
 Objectives:
   - 9/7/19  build methods in each class to pass parameters to the other classes 
             and return some value to the method. (Practice working in classes).
+            - complete.
+  - 9/8/19  passing a value in the CLI to MovieSearch and then on to Scraper.
+            a new and correct value is returned to the calling method - complete.
+  - 9/8/19  finish watching tutorial/follow-along videos at Learn before trying 
+            to build objects and scraping data.
