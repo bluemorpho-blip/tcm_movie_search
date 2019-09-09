@@ -85,6 +85,9 @@ class TcmMovieSearch::CLI
      search = gets.strip.downcase
      if search == "exit"
        return 
+     elsif search == "" # can't search for whitespaces
+     puts "invalid search entry"
+     return self.search_2
      else
       search_results_2(search)
     end
