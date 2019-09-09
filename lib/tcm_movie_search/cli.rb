@@ -1,4 +1,5 @@
 # TcmMovieSearch::CLI class will directly interact with the user
+# test
 
 class TcmMovieSearch::CLI
 
@@ -58,7 +59,7 @@ class TcmMovieSearch::CLI
      (1945)"
      puts "search results for: #{search}"
      puts synopsis.gsub /^\s*/, ''
-     
+
      # heredoc:
      # puts <<-DOC.gsub /^\s*/, ''
      # Brief Synopsis:
@@ -69,7 +70,7 @@ class TcmMovieSearch::CLI
    end
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-   
+
    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    # search_2 and Search_results_2 will give a much broader
    # return on a search.
@@ -80,7 +81,7 @@ class TcmMovieSearch::CLI
      puts "search:"
      search = gets.strip.downcase
      if search == "exit"
-       return 
+       return
      elsif search == "" # can't search for whitespaces
      puts "invalid search entry"
      return self.search_2
@@ -88,7 +89,7 @@ class TcmMovieSearch::CLI
       search_results_2(search)
     end
    end
-   
+
    def search_results_2(search)
      title = "The Picture of Dorian Gray"
      synopsis = "Brief Synopsis:
@@ -103,5 +104,5 @@ class TcmMovieSearch::CLI
      end
      self.search_2
    end
-   
+
  end
