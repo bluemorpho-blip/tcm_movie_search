@@ -44,14 +44,23 @@ class TcmMovieSearch::CLI
          search_results(search)
     elsif search == "exit"
          puts "you chose 'exit'"
+        return
     elsif search != "exit" || search != "dorian gray"
-        puts "no results found for #{search}."
+        # puts "no results found for #{search}."
         # search @@all objects for matches
+        puts "not found"
       end
+      self.search
     end
 
    def search_results(search)
+     synopsis = "Brief Synopsis:
+     A man remains young and handsome while his
+     portrait shows the ravages of age and sin.
+     (1945)"
      puts "search results for: #{search}"
+     puts synopsis.gsub /^\s*/, ''
+     
      # heredoc:
      puts <<-DOC.gsub /^\s*/, ''
      Brief Synopsis:
