@@ -1,5 +1,4 @@
 # TcmMovieSearch::CLI class will directly interact with the user
-# test
 
 class TcmMovieSearch::CLI
 
@@ -23,7 +22,7 @@ class TcmMovieSearch::CLI
     # search - not a surgical strike
     search_2 # - searches by ANY keyword - so far, my favorite
    end
-
+# TEST methods:
    def start_up
      puts "CLI.start_up method: calls methods from the movie_search and scraper classes."
      TcmMovieSearch::MovieSearch.movie_search_test
@@ -70,6 +69,24 @@ class TcmMovieSearch::CLI
    end
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+  # get_movie_schedule
+  # display_scedule?
+  # search_schedule?
+
+  def get_movie_schedule
+    # scrape movie schedule
+    @schedule = ['current_month']
+  end
+
+  def display_schedule?
+    # does the user want to view the entire shedule?
+    # display the monthly schedule
+  end
+
+  def search_schedule?
+    # does the user want to search the schedule?
+    # call the search and return methods (thru search method)
+  end
 
    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    # search_2 and Search_results_2 will give a much broader
