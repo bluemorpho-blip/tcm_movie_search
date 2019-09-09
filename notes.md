@@ -28,6 +28,9 @@ Objectives:
             and return some value to the method. (Practice working in classes).
             - complete.
   - 9/8/19  passing a value in the CLI to MovieSearch and then on to Scraper.
-            a new and correct value is returned to the calling method - complete.
+            a new and correct value is returned to the calling method
+            - complete.
   - 9/8/19  finish watching tutorial/follow-along videos at Learn before trying 
             to build objects and scraping data.
+            - worked on search methods (4 of them).  Watched about 20 minutes
+            of 1 video toady.

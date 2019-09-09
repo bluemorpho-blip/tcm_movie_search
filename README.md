@@ -5,6 +5,11 @@ run cli:
 
 first change 9/6/2019
   adding notes.md today
+  
+9/8/2019
+  keyword search method started with whitespace search filtered out.
+  built 2 different search/search result methods to test today. 
+  Keyword search seems better at this point.
 
 Search movies on TCM (Turner Classic Movies) by title, genre, actor, director or year released.
 
