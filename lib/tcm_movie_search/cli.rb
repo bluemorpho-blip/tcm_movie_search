@@ -22,8 +22,9 @@ class TcmMovieSearch::CLI
     puts "______________|      |_____________________________________|      |_____________"
     puts ""
     # binding.pry
-    # start_up
-    search
+    # start_up - Test method to follow method calls thru the classes
+    # search - not a surgical strike
+    search_2 # - searches by ANY keyword - so far, my favorite
    end
 
    def start_up
@@ -37,6 +38,7 @@ class TcmMovieSearch::CLI
      puts "returning from scraper is: #{TcmMovieSearch::MovieSearch.pass_to_next_class(input)}"
    end
 
+# search and search_results go together
    def search
      puts "search:"
      search = gets.strip.downcase
@@ -62,12 +64,43 @@ class TcmMovieSearch::CLI
      puts synopsis.gsub /^\s*/, ''
      
      # heredoc:
-     puts <<-DOC.gsub /^\s*/, ''
-     Brief Synopsis:
+     # puts <<-DOC.gsub /^\s*/, ''
+     # Brief Synopsis:
+     # A man remains young and handsome while his
+     # portrait shows the ravages of age and sin.
+     # (1945)
+     # DOC
+   end
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   
+   # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   # search_2 and Search_results_2 will give a much broader
+   # return on a search.
+   # need to make it work searching ALL values contained in an
+   # object WITH THE RETURN VALUE BEING THE TITLE AND DESCRIPTION!!!!!
+   # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   def search_2
+     puts "search:"
+     search = gets.strip.downcase
+     if search == "exit"
+       return 
+     else
+      search_results_2(search)
+    end
+   end
+   
+   def search_results_2(search)
+     title = "The Picture of Dorian Gray"
+     synopsis = "Brief Synopsis:
      A man remains young and handsome while his
      portrait shows the ravages of age and sin.
-     (1945)
-     DOC
+     (1945)"
+     if synopsis.include?(search)
+       puts title
+       puts synopsis
+     end
+     self.search_2
    end
-
+   
  end
