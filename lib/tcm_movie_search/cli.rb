@@ -96,9 +96,11 @@ class TcmMovieSearch::CLI
      A man remains young and handsome while his
      portrait shows the ravages of age and sin.
      (1945)"
-     if synopsis.include?(search)
+     if (synopsis.downcase.include?(search) || title.downcase.include?(search))
        puts title
        puts synopsis
+     else
+       puts "no results found."
      end
      self.search_2
    end
