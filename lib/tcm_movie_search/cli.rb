@@ -1,8 +1,4 @@
-#!/usr/bin/env ruby
-
 # TcmMovieSearch::CLI class will directly interact with the user
-require_relative 'movie_search'
-require_relative 'scraper'
 
 class TcmMovieSearch::CLI
 

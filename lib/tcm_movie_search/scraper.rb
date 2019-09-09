@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 class TcmMovieSearch::Scraper
 
   # scraper_test is used to follow the trail of passing
@@ -13,8 +11,5 @@ class TcmMovieSearch::Scraper
     input = input + 4
     input
   end
-  
-  
-  
   
 end

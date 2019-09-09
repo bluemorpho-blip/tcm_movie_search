@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 class TcmMovieSearch::MovieSearch
   
   def self.movie_search_test
