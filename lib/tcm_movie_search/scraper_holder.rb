@@ -43,11 +43,11 @@ year = movie_genre.css("span.dbyear")
   if (genre_even == "Crime" || genre_odd == "Crime")
     noir_count +=1
     puts "film noir"
-    
+
   elsif (genre_even == "Romance" || genre_odd == "Romance")
     puts "puh-leez!"
    else
-    puts "not (genre) noir" 
+    puts "not (genre) noir"
     puts "this month's (searched genre) noir movies = #{noir_count}"
   # change above if-else to .include? instead of == in actual code since there
   # are several genre categories per title.  Used == here to keep flow going
@@ -58,10 +58,10 @@ year = movie_genre.css("span.dbyear")
 #if the result is an empty array [], the content you want is probably being loaded with javascript
 
 #.text works on an array
-#['href'] does NOT work on an array 
+#['href'] does NOT work on an array
 
 #if it's a really long result and you can't tell if the content you want is in there, try chaining .text to the end.
-  #for example: 
+  #for example:
     #page.css("div.main-content").text  OR  #page.css("div.main-content")[0].text
 
 puts ""
