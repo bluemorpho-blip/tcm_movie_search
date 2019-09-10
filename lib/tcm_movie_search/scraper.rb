@@ -1,6 +1,8 @@
 class TcmMovieSearch::Scraper
 
-  site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
+  @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
+
+  page = Nokogiri::HTML(open(@site))
 
   movies = page.css("h2 a")
   description = page.css("p.description")
@@ -29,8 +31,15 @@ class TcmMovieSearch::Scraper
 
 
   def self.scrape_movie_schedule
-    scraper = Nokogiri::HTML(open(index_url))
-    schedule = []
-
+    scraper = Nokogiri::HTML(open(@site))
+    schedule = {}
+    schedule = {:test_title => "The Picture of Dorian Gray",
+    :test_synopsis => "Brief Synopsis:
+    A man remains young and handsome while his
+    portrait shows the ravages of age and sin.
+    (1945)",
+    :test_year => "1945"}
+    puts schedule
+  end
 
 end

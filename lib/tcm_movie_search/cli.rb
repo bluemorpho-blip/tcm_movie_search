@@ -20,7 +20,8 @@ class TcmMovieSearch::CLI
     # binding.pry
     # start_up - Test method to follow method calls thru the classes
     # search - not a surgical strike
-    search_2 # - searches by ANY keyword - so far, my favorite
+    # search_2 # - searches by ANY keyword - so far, my favorite
+    TcmMovieSearch::Scraper.scrape_movie_schedule
    end
 # TEST methods:
    def start_up

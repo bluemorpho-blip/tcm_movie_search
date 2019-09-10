@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 # This is my environment file!
+require 'nokogiri'
+require 'open-uri'
 
 require_relative "./tcm_movie_search/version"
 require_relative "./tcm_movie_search/cli"
