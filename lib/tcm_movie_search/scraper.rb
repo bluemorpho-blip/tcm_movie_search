@@ -20,7 +20,7 @@ class TcmMovieSearch::Scraper
   # scraper_test is used to follow the trail of passing
   # values through my classes
   def self.scraper_test
-    puts "you have accessed the class TcmMovieSearch::Scraper!"
+    puts "you have accessed the movie schedule in class Scraper!"
   end
 
   # final_destination is another test method for following values
@@ -39,7 +39,7 @@ class TcmMovieSearch::Scraper
     portrait shows the ravages of age and sin.
     (1945)",
     :test_year => "1945"}
-    puts schedule
+    puts "\n#{schedule[:test_title]}\n#{schedule[:test_synopsis]}\n#{schedule[:test_year]}"
   end
 
 end

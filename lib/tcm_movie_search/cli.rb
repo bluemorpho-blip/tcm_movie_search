@@ -1,82 +1,45 @@
 # TcmMovieSearch::CLI class will directly interact with the user
-
 class TcmMovieSearch::CLI
 
   # tcm_movie_search starts here
   def call
-    puts "    +++++++++++++++                                                    +++++++++"
-    puts "      +++++++++++++                                                   +++++++++"
-    puts "        +++++++++++                                                  ++++++++"
-    puts "          +++++++++      @@@@@@@   @@@        @    @                +++++++"
-    puts "           ++++++++         @     @   @      @ @  @ @              ++++++"
-    puts "            +++++++         @    @          @    @   @            +++++"
-    puts "              +++++         @    @         @     @    @          ++++"
-    puts "               ++++         @     @   @   @            @        +++"
-    puts "                +++         @      @@@   @              @      ++"
-    puts "                 ++                                           ++"
-    puts "               __||__             TCM Movie Search          __||__"
-    puts "______________|      |_____________________________________|      |_____________"
-    puts ""
-    # binding.pry
-    # start_up - Test method to follow method calls thru the classes
-    # search - not a surgical strike
-    # search_2 # - searches by ANY keyword - so far, my favorite
-    TcmMovieSearch::Scraper.scrape_movie_schedule
-   end
-# TEST methods:
-   def start_up
-     puts "CLI.start_up method: calls methods from the movie_search and scraper classes."
-     TcmMovieSearch::MovieSearch.movie_search_test
-     TcmMovieSearch::Scraper.scraper_test
-     two_classes_for_return(10)
-   end
-
-   def two_classes_for_return(input)
-     puts "returning from scraper is: #{TcmMovieSearch::MovieSearch.pass_to_next_class(input)}"
-   end
-
-# search and search_results go together
-   def search
-     puts "search:"
-     search = gets.strip.downcase
-    if search == "dorian gray"
-         search_results(search)
-    elsif search == "exit"
-         puts "you chose 'exit'"
-        return
-    elsif search != "exit" || search != "dorian gray"
-        # puts "no results found for #{search}."
-        # search @@all objects for matches
-        puts "not found"
-      end
-      self.search
-    end
-
-   def search_results(search)
-     synopsis = "Brief Synopsis:
-     A man remains young and handsome while his
-     portrait shows the ravages of age and sin.
-     (1945)"
-     puts "search results for: #{search}"
-     puts synopsis.gsub /^\s*/, ''
-
-     # heredoc:
-     # puts <<-DOC.gsub /^\s*/, ''
-     # Brief Synopsis:
-     # A man remains young and handsome while his
-     # portrait shows the ravages of age and sin.
-     # (1945)
-     # DOC
-   end
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    puts "\nTCM movie schedule and search"
+    menu_options
+    list_options
+    get_user_option
+    #TcmMovieSearch::Scraper.scrape_movie_schedule
+  end
 
   # get_movie_schedule
   # display_scedule?
   # search_schedule?
 
+  def menu_options
+    @menu = ["search", "schedule"]
+  end
+
+  def list_options
+    puts "\nChoose an option:"
+    @menu.each.with_index(1) do |option, index|
+      puts "#{index}. #{option}"
+    end
+  end
+
+  def get_user_option
+    chosen_option = gets.strip.to_i
+    if chosen_option == 1
+      self.search
+    else
+      get_movie_schedule
+    end
+  end
+
+
+
   def get_movie_schedule
-    # scrape movie schedule
-    @schedule = ['current_month']
+    TcmMovieSearch::Scraper.scraper_test
+    self.call
+    #@schedule = ['current_month']
   end
 
   def display_schedule?
@@ -89,26 +52,22 @@ class TcmMovieSearch::CLI
     # call the search and return methods (thru search method)
   end
 
-   # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-   # search_2 and Search_results_2 will give a much broader
-   # return on a search.
-   # need to make it work searching ALL values contained in an
-   # object WITH THE RETURN VALUE BEING THE TITLE AND DESCRIPTION!!!!!
-   # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-   def search_2
+   def search
      puts "search:"
      search = gets.strip.downcase
      if search == "exit"
-       return
+       self.call
+     elsif search == "end"
+       exit
      elsif search == "" # can't search for whitespaces
      puts "invalid search entry"
-     return self.search_2
+     return self.search
      else
-      search_results_2(search)
-    end
+      search_results(search)
+     end
    end
 
-   def search_results_2(search)
+   def search_results(search)
      title = "The Picture of Dorian Gray"
      synopsis = "Brief Synopsis:
      A man remains young and handsome while his
@@ -120,7 +79,7 @@ class TcmMovieSearch::CLI
      else
        puts "no results found."
      end
-     self.search_2
+     self.search
    end
 
  end
