@@ -2,11 +2,11 @@ class TcmMovieSearch::Scraper
 
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
-  page = Nokogiri::HTML(open(@site))
+  doc = Nokogiri::HTML(open(@site))
 
-  movies = page.css("h2 a")
-  description = page.css("p.description")
-  link = page.css('h2 a').map { |link| link['href'] }
+  movies = doc.css("h2 a")
+  description = doc.css("p.description")
+  link = doc.css('h2 a').map { |link| link['href'] }
   genre = "#{link.first}genre.html"
 
   movie_genre = Nokogiri::HTML(open(genre))
@@ -17,10 +17,12 @@ class TcmMovieSearch::Scraper
   # will remove the parentheses from the year to aid in search
   # clean_year = year.gsub(/[()]/, "")
 
-  # scraper_test is used to follow the trail of passing
-  # values through my classes
-  def self.scraper_test
-    puts "you have accessed the movie schedule in class Scraper!"
+  def scrape_movies
+    doc = Nokogiri::HTML(open(@site))
+    binding.pry
+  end
+
+
   end
 
   # final_destination is another test method for following values
