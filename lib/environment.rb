@@ -10,6 +10,7 @@ require_relative './tcm_movie_search/movie_search'
 require_relative './tcm_movie_search/scraper'
 
 require 'pry'
+require 'colorize'
 
 module TcmMovieSearch
   class Error < StandardError; end
