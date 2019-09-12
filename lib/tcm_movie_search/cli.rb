@@ -43,7 +43,7 @@ class TcmMovieSearch::CLI
 
 
   def get_movie_schedule
-    TcmMovieSearch::Scraper.scraper_test
+    TcmMovieSearch::Scraper.scrape_movie_schedule
     call
     #@schedule = ['current_month']
   end
