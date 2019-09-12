@@ -15,7 +15,7 @@ class TcmMovieSearch::CLI
   # search_schedule?
 
   def menu_options
-    @menu = ["search", "schedule"]
+    @menu = ["search", "schedule", "return to menu", "exit application"]
   end
 
   def list_options
@@ -26,19 +26,25 @@ class TcmMovieSearch::CLI
   end
 
   def get_user_option
+    # replace with case statement
     chosen_option = gets.strip.to_i
-    if chosen_option == 1
-      self.search
-    else
-      get_movie_schedule
-    end
+     case chosen_option
+     when 1
+       search
+     when 2
+       get_movie_schedule
+     when 3
+       call
+     when 4
+       exit
+     end
   end
 
 
 
   def get_movie_schedule
     TcmMovieSearch::Scraper.scraper_test
-    self.call
+    call
     #@schedule = ['current_month']
   end
 
@@ -56,15 +62,16 @@ class TcmMovieSearch::CLI
      puts "search:"
      search = gets.strip.downcase
      if search == "exit"
-       self.call
+       call
      elsif search == "end"
-       exit
+       return
      elsif search == "" # can't search for whitespaces
      puts "invalid search entry"
-     return self.search
+     return search
      else
       search_results(search)
      end
+     self.list_options
    end
 
    def search_results(search)
@@ -79,7 +86,7 @@ class TcmMovieSearch::CLI
      else
        puts "no results found."
      end
-     self.search
+     self.list_options # application exits without self
    end
 
  end
