@@ -71,7 +71,7 @@ class TcmMovieSearch::CLI
      else
       search_results(search)
      end
-     self.list_options
+     call
    end
 
    def search_results(search)
@@ -86,7 +86,6 @@ class TcmMovieSearch::CLI
      else
        puts "no results found."
      end
-     self.list_options # application exits without self
    end
 
  end
