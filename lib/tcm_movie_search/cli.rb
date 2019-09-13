@@ -6,7 +6,7 @@ class TcmMovieSearch::CLI
     puts "\nTCM movie schedule and search"
     puts ""
     # get_movies
-    TcmMovieSearch::Scraper.scraper
+    # TcmMovieSearch::Scraper.scraper
     menu_options
     list_options
     get_user_option
@@ -20,13 +20,7 @@ class TcmMovieSearch::CLI
     # TcmMovieSearch::Movies.new("Night of the Hunter", "Robert Mitchum sucks in his belly!", "Suspense", "1948")
     # TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
     puts "schedule:"
-    @movies = TcmMovieSearch::Movies.all
-    @movies.each do |data| # data represents each element through the array
-      puts "\ntitle: #{data.title}"
-      puts "brief synopsis: #{data.description}"
-      puts "genre: #{data.genre}"
-      puts "year released: #{data.year}"
-    end
+    puts TcmMovieSearch::Movies.all
     call
   end
 
@@ -64,16 +58,6 @@ class TcmMovieSearch::CLI
     TcmMovieSearch::Movies.all
     #@schedule = ['current_month']
     call
-  end
-
-  def display_schedule?
-    # does the user want to view the entire shedule?
-    # display the monthly schedule
-  end
-
-  def search_schedule?
-    # does the user want to search the schedule?
-    # call the search and return methods (thru search method)
   end
 
    def search
