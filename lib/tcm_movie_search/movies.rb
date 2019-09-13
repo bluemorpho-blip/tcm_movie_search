@@ -5,7 +5,6 @@ class TcmMovieSearch::Movies
   @@all = []
 
   def initialize(title, description = "no description available", genre = "movie", year = "no year available")
-    @movies = []
     @title = title
     @description = description
     @genre = genre
@@ -18,7 +17,7 @@ class TcmMovieSearch::Movies
   end
 
   def self.all
-    TcmMovieSearch::Scraper.scraper if @@all.empty?
+    TcmMovieSearch::Scraper.scrape_movies if @@all.empty?
     @@all
   end
 

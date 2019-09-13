@@ -5,23 +5,21 @@ class TcmMovieSearch::CLI
   def call
     puts "\nTCM movie schedule and search"
     puts ""
-    get_movies
-    # TcmMovieSearch::Scraper.scraper
     menu_options
     list_options
     get_user_option
   end
 
-  # get_movie_schedule
-  # display_scedule?
-  # search_schedule?
-
   def get_movies
-    TcmMovieSearch::Movies.new(TcmMovieSearch::Scraper.scraper)
-    # TcmMovieSearch::Movies.new("Night of the Hunter", "Robert Mitchum sucks in his belly!", "Suspense", "1948")
-    # TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
-    puts "schedule:"
-    puts TcmMovieSearch::Movies.all
+    TcmMovieSearch::Movies.new("Night of the Hunter", "Robert Mitchum sucks in his belly!", "Suspense", "1948")
+    TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
+    @movies = TcmMovieSearch::Movies.all
+    @movies.each do |data|
+      puts "\ntitle: #{data.title}"
+      puts "brief synopsis: #{data.description}"
+      puts "genre: #{data.genre}"
+      puts "year released: #{data.year}"
+    end
     call
   end
 
@@ -53,12 +51,6 @@ class TcmMovieSearch::CLI
        puts "choice:"
        get_user_option
      end
-  end
-
-  def get_movie_schedule
-    puts TcmMovieSearch::Movies.all
-    #@schedule = ['current_month']
-    call
   end
 
    def search
