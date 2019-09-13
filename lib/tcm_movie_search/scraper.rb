@@ -17,12 +17,24 @@ class TcmMovieSearch::Scraper
   # will remove the parentheses from the year to aid in search
   # clean_year = year.gsub(/[()]/, "")
 
-  def scraper
+  def self.scraper
     output = {}
 
     doc = Nokogiri::HTML(open(@site))
     movie_title = doc.css("h2 a")
 
+    movie_title.each do |movie|
+      movie_name = movie.css("span.db-movietitle")
+      genre_1 = movie.css("tr.tdrwodd")
+      genre_2 = movie.css("tr.tdreven")
+      year = movie.css("span.dbyear")
 
-
+      output[movie_name.to_sym] = {
+        :genre_1 => genre_1,
+        :genre_2 => genre_2,
+        :year => year
+      }
+    end
+    put output
+  end
 end
