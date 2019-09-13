@@ -1,11 +1,14 @@
 class TcmMovieSearch::Movies
 
-  @@all = {}
+  attr_accessor :title, :description, :genre, :actor, :director, :year
 
-  def initialize(title)
+  @@all = []
+
+  def initialize(title, description = "no description available", genre = "movie", year = "no year available")
     @title = title
     @description = description
     @genre = genre
+    @year = year
     save
   end
 
@@ -14,6 +17,7 @@ class TcmMovieSearch::Movies
   end
 
   def self.all
+    TcmMovieSearch::Scraper.scrape_movies if @@all.empty?
     @@all
   end
 

@@ -19,10 +19,7 @@ class TcmMovieSearch::Scraper
 
   def scrape_movies
     doc = Nokogiri::HTML(open(@site))
-    binding.pry
-  end
-
-
+    puts doc
   end
 
   # final_destination is another test method for following values
