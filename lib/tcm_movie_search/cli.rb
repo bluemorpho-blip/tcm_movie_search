@@ -19,9 +19,9 @@ class TcmMovieSearch::CLI
   def get_movies
     TcmMovieSearch::Movies.new("Night of the Hunter", "Robert Mitchum sucks in his belly!", "Suspense", "1948")
     TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
+    puts "schedule:"
     @movies = TcmMovieSearch::Movies.all
     @movies.each do |data| # data represents each element through the array
-      puts "schedule:"
       puts "\ntitle: #{data.title}"
       puts "brief synopsis: #{data.description}"
       puts "genre: #{data.genre}"
