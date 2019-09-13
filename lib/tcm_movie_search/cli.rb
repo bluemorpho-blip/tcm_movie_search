@@ -21,6 +21,7 @@ class TcmMovieSearch::CLI
     TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
     @movies = TcmMovieSearch::Movies.all
     @movies.each do |data| # data represents each element through the array
+      puts "schedule:"
       puts "\ntitle: #{data.title}"
       puts "brief synopsis: #{data.description}"
       puts "genre: #{data.genre}"
