@@ -5,6 +5,7 @@ class TcmMovieSearch::Movies
   @@all = []
 
   def initialize(title, description = "no description available", genre = "movie", year = "no year available")
+    @movies = []
     @title = title
     @description = description
     @genre = genre
