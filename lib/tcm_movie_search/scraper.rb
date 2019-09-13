@@ -17,7 +17,7 @@ class TcmMovieSearch::Scraper
   # will remove the parentheses from the year to aid in search
   # clean_year = year.gsub(/[()]/, "")
 
-  def self.scraper
+  def scraper
     output = {}
 
     doc = Nokogiri::HTML(open(@site))
@@ -35,6 +35,5 @@ class TcmMovieSearch::Scraper
         :year => year
       }
     end
-    put output
   end
 end
