@@ -6,6 +6,7 @@ class TcmMovieSearch::CLI
     puts "\nTCM movie schedule and search"
     puts ""
     # get_movies
+    TcmMovieSearch::Scraper.scraper
     menu_options
     list_options
     get_user_option
@@ -16,8 +17,8 @@ class TcmMovieSearch::CLI
   # search_schedule?
 
   def get_movies
-    TcmMovieSearch::Movies.new("Night of the Hunter", "Robert Mitchum sucks in his belly!", "Suspense", "1948")
-    TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
+    # TcmMovieSearch::Movies.new("Night of the Hunter", "Robert Mitchum sucks in his belly!", "Suspense", "1948")
+    # TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
     puts "schedule:"
     @movies = TcmMovieSearch::Movies.all
     @movies.each do |data| # data represents each element through the array
