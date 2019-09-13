@@ -5,11 +5,10 @@ class TcmMovieSearch::CLI
   def call
     puts "\nTCM movie schedule and search"
     puts ""
-    get_movies
-    # menu_options
-    # list_options
-    # get_user_option
-    #TcmMovieSearch::Scraper.scrape_movie_schedule
+    # get_movies
+    menu_options
+    list_options
+    get_user_option
   end
 
   # get_movie_schedule
@@ -27,6 +26,7 @@ class TcmMovieSearch::CLI
       puts "genre: #{data.genre}"
       puts "year released: #{data.year}"
     end
+    call
   end
 
   def menu_options
@@ -47,15 +47,17 @@ class TcmMovieSearch::CLI
      when 1
        search
      when 2
-       get_movie_schedule
+       get_movies
      when 3
        call
      when 4
        exit
+     else
+       puts "not a valid choice, please select again"
+       puts "choice:"
+       get_user_option
      end
   end
-
-
 
   def get_movie_schedule
     TcmMovieSearch::Movies.all
