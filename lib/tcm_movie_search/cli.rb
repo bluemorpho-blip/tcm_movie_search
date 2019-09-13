@@ -85,7 +85,7 @@ class TcmMovieSearch::CLI
      end
    end
 
-   def get_scraped_movie
+   def get_scraped_movie # test
      scrape_box = []
      scrape_box << TcmMovieSearch::Scraper.scrape.text.gsub(/\([^()]*\)/, '') # removes the date
      puts scrape_box

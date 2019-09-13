@@ -22,14 +22,10 @@ class TcmMovieSearch::Scraper
 
     movies = doc.css("h2 a")
 
-    movies.each do |m|
-      title = m.text
+    movies.each do |t|
+      title = t.text
       TcmMovieSearch::Movies.new(title)
     end
   end
 
-  def self.scrape_description(movie)
-    TcmMovieSearch::Movies.new("Good movie", movie)
-    TcmMovieSearch::Movies.new("Bad movie", movie)
-  end
 end
