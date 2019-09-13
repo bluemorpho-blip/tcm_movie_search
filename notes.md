@@ -17,6 +17,8 @@ year = movie_genre.css("span.dbyear")
 # will remove the parentheses from the year to aid in search
 # clean_year = year.gsub(/[()]/, "")
 
+# regex to remove (date) from title:.gsub(/\([^()]*\)/, '')
+
 1. some sort of graphic on start-up - ASCII thingy
 2. user menu for search choices:
     - start by asking for a month to search:

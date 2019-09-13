@@ -24,7 +24,7 @@ class TcmMovieSearch::CLI
   end
 
   def menu_options
-    @menu = ["search", "schedule", "return to menu", "exit application"]
+    @menu = ["search", "schedule", "scraper test", "return to menu", "exit application"]
   end
 
   def list_options
@@ -43,8 +43,10 @@ class TcmMovieSearch::CLI
      when 2
        get_movies
      when 3
-       call
+       get_scraped_movie
      when 4
+       call
+     when 5
        exit
      else
        puts "not a valid choice, please select again"
@@ -81,6 +83,13 @@ class TcmMovieSearch::CLI
      else
        puts "no results found."
      end
+   end
+
+   def get_scraped_movie
+     scrape_box = []
+     scrape_box << TcmMovieSearch::Scraper.scrape.text.gsub(/\([^()]*\)/, '') # removes the date
+     puts scrape_box
+     call
    end
 
  end
