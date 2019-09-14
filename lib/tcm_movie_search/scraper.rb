@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-require 'httparty'
+require 'httparty' # not seeing any difference btween HTTParty and open-uri
 class Scraper
   attr_accessor :parse_page
 
@@ -22,8 +22,12 @@ class Scraper
   # clean_year = year.gsub(/[()]/, "")
 
   def initialize
-    doc = HTTParty.get("http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule")
+    # doc = HTTParty.get("http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule")
+    doc = open("http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule")
+    link = doc.css('h2 a').map { |link| link['href'] }
+    genre_page = "#{link.first}genre.html"
     @parse_page ||= Nokogiri::HTML(doc)
+    @parse_genre_page ||= Nokogiri::HTML(genre_page)
     # ||= if @parse_page doesn't equal Nokogiri::HTML(doc), it will.
   end
 
@@ -35,13 +39,19 @@ class Scraper
     movie_description = parse_page.css("p.description") { |description| description.text }
   end
 
+  def get_year
+    year_released = parse_genre_page.css("span.dbyear") { |year| year_released.text }
+  end
+
   scraper = Scraper.new
   titles = scraper.get_movie_titles
   descriptions = scraper.get_movie_description
+  years = scraper.get_year
 
   (0...titles.size).each do |index| # three dots don't include last digit. 0 to titles - 1
     puts "- - - index: #{index + 1} - - -"
     puts "title: #{titles[index].text.gsub(/\([^()]*\)/, '')}\nbrief synposis:#{descriptions[index].text}\n"
+    puts "year released: #{years[index].text}"
   end
 
 end
