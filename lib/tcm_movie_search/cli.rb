@@ -64,7 +64,7 @@ class TcmMovieSearch::CLI
        return
      elsif search == "" # can't search for whitespaces
      puts "invalid search entry"
-     return search
+     search
      else
       search_results(search)
      end
