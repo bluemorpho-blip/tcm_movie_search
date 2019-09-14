@@ -36,14 +36,20 @@ class Scraper
     movie_description = @parse_page.css("p.description") { |description| description.text }
   end
 
+  def get_movie_link
+    movie_link = @parse_page.css('h2 a').map { |link| link['href'] }
+  end
+
   scraper = Scraper.new
   titles = scraper.get_movie_titles
   descriptions = scraper.get_movie_description
+  links = scraper.get_movie_link
 
   (0...titles.size).each do |index| # three dots don't include last digit. 0 to titles - 1
     puts "\n- - - index: #{index + 1} - - -"
     puts "\ntitle: #{titles[index].text.gsub(/\([^()]*\)/, '')}"
     puts "\nbrief synposis:#{descriptions[index].text}"
+    puts "\nmovie link: #{links[index]}"
   end
 
 end
