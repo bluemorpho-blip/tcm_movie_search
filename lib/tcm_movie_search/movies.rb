@@ -13,7 +13,7 @@ class TcmMovieSearch::Movies
   end
 
   def save
-    @@all << title
+    @@all << @title
   end
 
   def self.all

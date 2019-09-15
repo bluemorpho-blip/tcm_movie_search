@@ -18,31 +18,14 @@
   # clean_year = year.gsub(/[()]/, "")
   class TcmMovieSearch::Scraper
 
-    def self.scraper
-
-    @@all = []
-
     @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
-    doc = Nokogiri::HTML(open(@site))
 
-    doc.css("h2 a").each do |data|
-      title = data.text.gsub(/\([^()]*\)/, '')
+    def self.scraper
+      doc = Nokogiri::HTML(open(@site))
 
-
+      doc.css("td").each do |data|
+        title = data.css("h2 a").text.gsub(/\([^()]*\)/, '')
         TcmMovieSearch::Movies.new(title)
       end
     end
-
-
-  # scraper = Scraper.new
-  # titles = scraper.get_movie_titles
-  # descriptions = scraper.get_movie_description
-  # links = scraper.get_movie_link
-
-  # (0...titles.size).each do |index| # three dots don't include last digit. 0 to titles - 1
-    # puts "\n- - - index: #{index + 1} - - -"
-    # puts "\ntitle: #{titles[index].text.gsub(/\([^()]*\)/, '')}"
-    # puts "\nbrief synposis:#{descriptions[index].text}"
-    # puts "\nmovie link: #{links[index]}"
-  # end
-end
+  end
