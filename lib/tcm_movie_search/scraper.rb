@@ -17,14 +17,16 @@
   # will remove the parentheses from the year to aid in search
   # clean_year = year.gsub(/[()]/, "")
   class TcmMovieSearch::Scraper
+    attr_accessor :title
 
     @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
     def self.scraper
       doc = Nokogiri::HTML(open(@site))
 
-      doc.css("td").each do |data|
-        title = data.css("h2 a").text.gsub(/\([^()]*\)/, '')
+      doc.css("h2").each do |data|
+        title = data.css("a").text.gsub(/\([^()]*\)/, '').strip
+        description = data.css("p.description").text.strip
         TcmMovieSearch::Movies.new(title)
       end
     end
