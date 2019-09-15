@@ -4,9 +4,9 @@ class TcmMovieSearch::Movies
 
   @@all = []
 
-  def initialize(title)
+  def initialize(title, description)
     @title = title
-    # @description = description
+    @description = description
     # @genre = genre
     # @year = year
     save
