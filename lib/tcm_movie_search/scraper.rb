@@ -1,4 +1,4 @@
-class TcmMovieSearch::Scraper
+
 
   # doc = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
@@ -16,22 +16,23 @@ class TcmMovieSearch::Scraper
   # year = movie_genre.css("span.dbyear")
   # will remove the parentheses from the year to aid in search
   # clean_year = year.gsub(/[()]/, "")
+  class TcmMovieSearch::Scraper
 
-  @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
+    def self.scraper
 
-  def self.scraper
+    @@all = []
+
+    @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
     doc = Nokogiri::HTML(open(@site))
-     title = doc.css("h2 a").text.strip
-     description = doc.css("p.description")
-     link = doc.css('h2 a').map { |link| link['href'] }
-     genre = "#{link.first}genre.html"
+
+    doc.css("h2 a").each do |data|
+      title = data.text.gsub(/\([^()]*\)/, '')
 
 
+        TcmMovieSearch::Movies.new(title)
+      end
+    end
 
-         TcmMovieSearch::Movies.new(title)
-
-
-   end
 
   # scraper = Scraper.new
   # titles = scraper.get_movie_titles
@@ -44,5 +45,4 @@ class TcmMovieSearch::Scraper
     # puts "\nbrief synposis:#{descriptions[index].text}"
     # puts "\nmovie link: #{links[index]}"
   # end
-
 end
