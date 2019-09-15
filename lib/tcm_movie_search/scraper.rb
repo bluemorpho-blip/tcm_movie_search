@@ -21,7 +21,7 @@ class TcmMovieSearch::Scraper
 
   def self.scraper
     doc = Nokogiri::HTML(open(@site))
-     title = doc.css("h2 a")
+     title = doc.css("h2 a").text.strip
      description = doc.css("p.description")
      link = doc.css('h2 a').map { |link| link['href'] }
      genre = "#{link.first}genre.html"
