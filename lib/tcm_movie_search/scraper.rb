@@ -1,8 +1,4 @@
-require 'nokogiri'
-require 'open-uri'
-# require 'httparty' # not seeing any difference btween HTTParty and open-uri
-class Scraper
-  attr_accessor :parse_page
+class TcmMovieSearch::Scraper
 
   # doc = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
@@ -21,22 +17,21 @@ class Scraper
   # will remove the parentheses from the year to aid in search
   # clean_year = year.gsub(/[()]/, "")
 
-
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
-  doc = Nokogiri::HTML(open(@site))
 
-  def scraper
-     movie_title = doc.css("h2 a")
+  def self.scraper
+    doc = Nokogiri::HTML(open(@site))
+     title = doc.css("h2 a")
      description = doc.css("p.description")
      link = doc.css('h2 a').map { |link| link['href'] }
      genre = "#{link.first}genre.html"
 
-     doc.each.with_index do |data, index|
-       if data.css("p.description").count != 0
-         description = data.css("p.description")
 
-         TcmMovieSearch::Movies.new(description)
-  end
+
+         TcmMovieSearch::Movies.new(title)
+
+
+   end
 
   # scraper = Scraper.new
   # titles = scraper.get_movie_titles
