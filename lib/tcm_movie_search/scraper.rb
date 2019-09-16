@@ -24,11 +24,16 @@
     def self.scraper
       doc = Nokogiri::HTML(open(@site))
 
-      doc.css("table tr").each do |data|
-        title = data.css("a").text.gsub(/\([^()]*\)/, '').strip
-        description = data.css("p.description").text.strip
-      # end
-        TcmMovieSearch::Movies.new(title, description)
+      rows = doc.css("table tr")
+
+      rows.each.with_index do |row, index|
+        description = row.css("p.description").text.strip
+        cast = row.css(".cast").text.strip
+        runtime = row.css(".lastp").text.strip
+        title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
+        url = rows[index - 1].css("a").attr("href")
+
+        TcmMovieSearch::Movies.new(title, description, cast, runtime, url)
       end
     end
   end
