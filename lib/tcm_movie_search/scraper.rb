@@ -34,13 +34,24 @@
         runtime.concat ' mins'
         title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
         link = rows[index - 1].css('h2 a').map { |link| link['href'] }
+        site = link
 
-        TcmMovieSearch::Movies.new(title, description, cast, runtime, link)
+        title_scraper(link)
+
+        TcmMovieSearch::Movies.new(title, description, cast, runtime, link, genre_even)
       end
     end
 
     def self.title_scraper(link)
 
+      movie_genre = link.to_s
+
+      genre_even = movie_genre.css("tr.tdrwodd")
+      genre_odd = movie_genre.css("tr.tdreven")
+      title = movie_genre.css("span.db-movietitle")
+      year = movie_genre.css("span.dbyear")
+
 
     end
+
   end
