@@ -29,11 +29,11 @@
       rows.each.with_index do |row, index|
         description = row.css("p.description").text.strip
         cast = row.css(".cast").text.strip
-        runtime = row.css(".lastp").text.strip
+        runtime = row.css(".lastp").text.gsub(/[^\d]/, '').strip
+        runtime.concat ' mins'
         title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
-        url = rows[index - 1].css("a").attr("href")
 
-        TcmMovieSearch::Movies.new(title, description, cast, runtime, url)
+        TcmMovieSearch::Movies.new(title, description, cast, runtime)
       end
     end
   end

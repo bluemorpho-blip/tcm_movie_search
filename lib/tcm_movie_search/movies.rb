@@ -4,12 +4,11 @@ class TcmMovieSearch::Movies
 
   @@all = []
 
-  def initialize(title = nil, description = "not available", cast = "not available", runtime = "not available", url = "no url available")
+  def initialize(title = nil, description = "not available", cast = "not available", runtime = "not available")
     @title = title
     @description = description
     @cast = cast
     @runtime = runtime
-    @url = url
     # @genre = genre
     # @year = year
     save
