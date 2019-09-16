@@ -1,16 +1,15 @@
 class TcmMovieSearch::Movies
 
-  attr_accessor :title, :description, :genre, :cast, :director, :year, :link, :genre_even
+  attr_accessor :title, :description, :genre, :cast, :director, :year, :link
 
   @@all = []
 
-  def initialize(title, description, cast, runtime, link, genre_even)
+  def initialize(title, description, cast, runtime, link)
     @description = description
     @cast = cast
     @runtime = runtime
     @title = title
     @link = link
-    @genre_even = genre_even
     save
   end
 
