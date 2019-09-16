@@ -24,6 +24,7 @@
     def self.scraper
       doc = Nokogiri::HTML(open(@site))
 
+
       rows = doc.css("table tr")
 
       rows.each.with_index do |row, index|
@@ -32,8 +33,14 @@
         runtime = row.css(".lastp").text.gsub(/[^\d]/, '').strip
         runtime.concat ' mins'
         title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
+        link = rows[index - 1].css('h2 a').map { |link| link['href'] }
 
-        TcmMovieSearch::Movies.new(title, description, cast, runtime)
+        TcmMovieSearch::Movies.new(title, description, cast, runtime, link)
       end
+    end
+
+    def self.title_scraper(link)
+
+
     end
   end
