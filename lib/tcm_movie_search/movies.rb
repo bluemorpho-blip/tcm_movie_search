@@ -4,12 +4,13 @@ class TcmMovieSearch::Movies
 
   @@all = []
 
-  def initialize(title, description, cast, runtime)
+  def initialize(title, description, cast, runtime, link, genre)
     @title = title
     @description = description
     @cast = cast
     @runtime = runtime
-
+    @link = link
+    @genre = genre
     save
   end
 
@@ -20,8 +21,6 @@ class TcmMovieSearch::Movies
   def self.all
     TcmMovieSearch::Scraper.scraper if @@all.empty?
     @@all.inspect
-
   end
-
 
 end

@@ -21,8 +21,12 @@
 
     @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
+    def self.data_scraper(url)
+      Nokogiri::HTML(open(url))
+    end
+
     def self.scraper
-      doc = Nokogiri::HTML(open(@site))
+      doc = data_scraper(@site)
 
 
       rows = doc.css("table tr")
@@ -33,10 +37,19 @@
         runtime = row.css(".lastp").text.gsub(/[^\d]/, '').strip
         runtime.concat ' mins'
         title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
-        # link = rows[index - 1].css("a").map { |link| link['href'] }.to_s
+        link = rows[index - 1].css("a").map { |link| link['href'] }
+        link = link[0]
 
-        TcmMovieSearch::Movies.new(title, description, cast, runtime)
+        genre = link_scraper(link)
+
+        TcmMovieSearch::Movies.new(title, description, cast, runtime, link, genre)
       end
     end
 
-  end
+    def self.link_scraper(link)
+      link = "http://www.tcm.com/tcmdb/title/309194/MGM-Parade-Show-25/genre.html"
+      doc = data_scraper(link)
+
+      genre = doc.css("tr.tdrwodd").text.strip
+    end
+end

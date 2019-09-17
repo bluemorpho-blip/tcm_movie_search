@@ -24,7 +24,7 @@ class TcmMovieSearch::CLI
   end
 
   def menu_options
-    @menu = ["search", "schedule", "scraper test", "return to menu", "exit application"]
+    @menu = ["search", "schedule", "scraper test", "return to menu", "exit application",]
   end
 
   def list_options
