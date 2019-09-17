@@ -33,11 +33,9 @@
         runtime = row.css(".lastp").text.gsub(/[^\d]/, '').strip
         runtime.concat ' mins'
         title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
-        link = rows[index - 1].css("a").map { |link| link['href'] }.to_s
+        # link = rows[index - 1].css("a").map { |link| link['href'] }.to_s
 
-        # TcmMovieSearch::MovieTitleScraper.movie_title_scraper(link)
-
-        TcmMovieSearch::Movies.new(title, description, cast, runtime, link)
+        TcmMovieSearch::Movies.new(title, description, cast, runtime)
       end
     end
 
