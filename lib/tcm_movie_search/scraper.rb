@@ -28,7 +28,6 @@
     def self.scraper
       doc = data_scraper(@site)
 
-
       rows = doc.css("table tr")
 
       rows.each.with_index do |row, index|
@@ -40,15 +39,19 @@
         link = rows[index - 1].css("a").map { |link| link['href'] }
         link = link[0]
 
-        genre = link_scraper(link)
+        if link != nil
+          genre = data_scraper(link)
+          genre = doc.css("tr.tdrwodd").text.strip
+        end
 
-        TcmMovieSearch::Movies.new(title, description, cast, runtime, link, genre)
+        TcmMovieSearch::Movies.new(title, description, cast, runtime, link, genre = nil)
       end
     end
 
     def self.link_scraper(link)
-      link = "http://www.tcm.com/tcmdb/title/309194/MGM-Parade-Show-25/genre.html"
-      doc = data_scraper(link)
+        link  = "#{link}genre.html"
+      #link = "http://www.tcm.com/tcmdb/title/309194/MGM-Parade-Show-25/genre.html"
+      genre_doc = data_scraper(link)
 
       genre = doc.css("tr.tdrwodd").text.strip
     end
