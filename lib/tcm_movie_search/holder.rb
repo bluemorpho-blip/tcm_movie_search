@@ -58,13 +58,11 @@
     def self.scrape_genre(title, description, cast, runtime, link, genre)
       begin
         doc = data_scraper(genre)
-        genre = doc.css("tdrwodd")
+        genre_even = doc.css("tr.tdrwodd")
       rescue
         genre = "no genre listed"
-      ensure
-          genre = "CRIME!" # doc.css("tr.tdrwodd")
-        end
-        create_movie_obj(title, description, cast, runtime, link, genre)
+      end
+        create_movie_obj(title, description, cast, runtime, link, genre_even)
     end
 
     def self.create_movie_obj(title, description, cast, runtime, link, genre)
