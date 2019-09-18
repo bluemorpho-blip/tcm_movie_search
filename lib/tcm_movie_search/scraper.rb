@@ -58,7 +58,7 @@
     def self.scrape_genre(title, description, cast, runtime, link, genre)
       begin
         doc = data_scraper(genre)
-        genre = doc.css("td.tdrwodd").first.text.strip
+        genre = doc.css("tr.tdrwodd").text.strip
       rescue
         genre = "no genre listed"
       end
