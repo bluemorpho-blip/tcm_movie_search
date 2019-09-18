@@ -1,6 +1,6 @@
 class TcmMovieSearch::Movies
 
-  attr_accessor :title, :description, :cast, :director, :year, :link
+  attr_accessor :title, :description, :cast, :director, :year, :link, :genre
 
   @@all = []
 
