@@ -41,6 +41,9 @@ class TcmMovieSearch::CLI
      when 1
        search
      when 2
+       puts "gathering the movie schedule."
+       puts "this can take a few minutes."
+       puts "please wait."
        get_movies
      when 3
        get_scraped_movie

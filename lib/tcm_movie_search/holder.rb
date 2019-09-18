@@ -1,4 +1,5 @@
-
+# holder.rb is a working copy of scraper.rb
+# here tempiorarily, in case I trash scraper.rb.
 
   # doc = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 

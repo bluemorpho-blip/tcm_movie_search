@@ -59,7 +59,7 @@
       begin
         doc = data_scraper(genre)
         genre = doc.css("tr.tdrwodd").text.strip
-      rescue
+        rescue
         genre = "no genre listed"
       end
         create_movie_obj(title, description, cast, runtime, link, genre)
