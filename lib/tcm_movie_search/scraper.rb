@@ -23,6 +23,7 @@
 
     def self.data_scraper(url)
       Nokogiri::HTML(open(url))
+      rescue OpenURI::HTTPError
     end
 
     def self.scraper
@@ -43,9 +44,8 @@
           link = "no link available"
         end
 
-        if link != nil && link.include?("http:")
-          genre = "#{link}genre.html"
-          scrape_genre(genre)
+        if link.start_with?("http:")
+          scrape_genre(link)
         else
           genre = "no genre listed"
         end
@@ -54,11 +54,15 @@
       end
     end
 
-    def self.scrape_genre(genre)
-      doc = data_scraper(genre)
-      if doc != nil
-        genre_even = doc.css("tr.tdrwodd")
-      end
+    def self.scrape_genre(link)
+      begin
+        genre = "#{link}genre.html"
+        doc = data_scraper(genre)
+      rescue
+        genre = "no genre listed"
+      ensure
+          genre = "CRIME!" # doc.css("tr.tdrwodd")
+        end
     end
 
   end
