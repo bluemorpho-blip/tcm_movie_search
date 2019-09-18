@@ -27,7 +27,6 @@
 
     def self.scraper
       doc = data_scraper(@site)
-
       rows = doc.css("table tr")
 
       rows.each.with_index do |row, index|
@@ -57,7 +56,9 @@
 
     def self.scrape_genre(genre)
       doc = data_scraper(genre)
-      genre_even = doc.css("tr.tdrwodd")
+      if doc != nil
+        genre_even = doc.css("tr.tdrwodd")
+      end
     end
 
   end
