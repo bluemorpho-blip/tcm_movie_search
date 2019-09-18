@@ -37,22 +37,27 @@
         runtime.concat ' mins'
         title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
         link = rows[index - 1].css("a").map { |link| link['href'] }
-        link = link[0]
-
-        if link != nil
-          genre = data_scraper(link)
-          genre = doc.css("tr.tdrwodd").text.strip
+        link = link[0].to_s
+        if link != nil && link.include?("http:")
+          link
+        else
+          link = "no link available"
         end
 
-        TcmMovieSearch::Movies.new(title, description, cast, runtime, link, genre = nil)
+        if link != nil && link.include?("http:")
+          genre = "#{link}genre.html"
+          scrape_genre(genre)
+        else
+          genre = "no genre listed"
+        end
+
+        TcmMovieSearch::Movies.new(title, description, cast, runtime, link, genre)
       end
     end
 
-    def self.link_scraper(link)
-        link  = "#{link}genre.html"
-      #link = "http://www.tcm.com/tcmdb/title/309194/MGM-Parade-Show-25/genre.html"
-      genre_doc = data_scraper(link)
-
-      genre = doc.css("tr.tdrwodd").text.strip
+    def self.scrape_genre(genre)
+      doc = data_scraper(genre)
+      genre_even = doc.css("tr.tdrwodd")
     end
-end
+
+  end
