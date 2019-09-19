@@ -28,9 +28,9 @@ class TcmMovieSearch::CLI
   end
 
   def list_options
-    puts "\nChoose an option:"
+    puts "\nChoose an option:".blue
     @menu.each.with_index(1) do |option, index|
-      puts "#{index}. #{option}"
+      puts "#{index}. #{option}".blue
     end
   end
 
@@ -43,7 +43,7 @@ class TcmMovieSearch::CLI
      when 2
        puts "gathering the movie schedule."
        puts "this can take a few minutes."
-       puts "please wait."
+       puts "please wait.".blue
        get_movies
      when 3
        get_scraped_movie
@@ -52,14 +52,14 @@ class TcmMovieSearch::CLI
      when 5
        exit
      else
-       puts "not a valid choice, please select again"
-       puts "choice:"
+       puts "not a valid choice, please select again".blue
+       puts "choice:".blue
        get_user_option
      end
   end
 
    def search
-     puts "search:"
+     puts "search:".blue
      search = gets.strip.downcase
      if search == "exit"
        call
@@ -94,5 +94,6 @@ class TcmMovieSearch::CLI
      puts scrape_box
      call
    end
+
 
  end

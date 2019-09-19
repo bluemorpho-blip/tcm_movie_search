@@ -21,7 +21,7 @@ class TcmMovieSearch::Movies
 
   def self.all
     TcmMovieSearch::Scraper.scraper if @@all.empty?
-    @@all.inspect
+    @@all.inspect.blue
   end
 
 end
