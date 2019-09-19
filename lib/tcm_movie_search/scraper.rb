@@ -1,23 +1,5 @@
-
-
-  # doc = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
-
-  # @parse_page ||= Nokogiri::HTML(doc) # ||= if @parse_page doesn't equal Nokogiri::HTML(doc), it will.
-
-  # movie_title = doc.css("h2 a")
-  # description = doc.css("p.description")
-  # link = doc.css('h2 a').map { |link| link['href'] }
-  # genre = "#{link.first}genre.html"
-
-  # movie_genre = Nokogiri::HTML(open(genre))
-  # genre_even = movie_genre.css("tr.tdrwodd")
-  # genre_odd = movie_genre.css("tr.tdreven")
-  # title = movie_genre.css("span.db-movietitle")
-  # year = movie_genre.css("span.dbyear")
-  # will remove the parentheses from the year to aid in search
-  # clean_year = year.gsub(/[()]/, "")
   class TcmMovieSearch::Scraper
-    attr_accessor :title, :description, :cast, :runtime, :link, :genre
+    attr_accessor :title, :description, :cast, :runtime, :link, :year, :genre
 
     @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
@@ -46,12 +28,6 @@
         else
           link = "no link available"
         end
-
-        #if link.start_with?("http:")
-          #scrape_genre(link)
-        #else
-          #genre = "inaccurate link"
-        #end
       end
     end
 
@@ -59,14 +35,15 @@
       begin
         doc = data_scraper(genre)
         genre = doc.css("tr.tdrwodd").text.strip
+        year = doc.css("span.dbyear").text.gsub(/[()]/, "").strip
         rescue
         genre = "no genre listed"
       end
-        create_movie_obj(title, description, cast, runtime, link, genre)
+        create_movie_obj(title, year, description, cast, runtime, link, genre)
     end
 
-    def self.create_movie_obj(title, description, cast, runtime, link, genre)
-      TcmMovieSearch::Movies.new(title, description, cast, runtime, link, genre)
+    def self.create_movie_obj(title, year, description, cast, runtime, link, genre)
+      TcmMovieSearch::Movies.new(title, year, description, cast, runtime, link, genre)
     end
 
   end
