@@ -19,7 +19,7 @@
         runtime.concat ' mins'
         title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
         link = rows[index - 1].css("a").map { |link| link['href'] }
-       link = link[0].to_s
+        link = link[0].to_s
 
         if link.start_with?("http:")
           link
