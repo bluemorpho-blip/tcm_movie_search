@@ -23,14 +23,13 @@ class TcmMovieSearch::Scraper
 
   def self.scraper
     doc = data_scraper(@site)
-    date_doc = data_scraper(@site)
 
     rows = doc.css("#monthschedule tr")
 
     rows.each do |date|
-      date = rows.css('h4').text.strip
-      @date = date
-      
+      @date = rows.css('h4').text.strip
+
+
       rows.each.with_index do |row, index|
         @description = row.css("p.description").text.strip
         @cast = row.css(".cast").text.strip
