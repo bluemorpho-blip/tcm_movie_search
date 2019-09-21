@@ -4,6 +4,8 @@ class TcmMovieSearch::Movies
   @@all = []
 
   def initialize(date, time, title, year, description, cast, runtime, link, genre)
+    @date = date
+    @time = time
     @title = title
     @description = description
     @cast = cast
@@ -11,8 +13,6 @@ class TcmMovieSearch::Movies
     @link = link
     @year = year
     @genre = genre
-    @date = date
-    @time = time
     save
   end
 

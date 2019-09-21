@@ -26,7 +26,7 @@ class TcmMovieSearch::Scraper
     rows = doc.css("#monthschedule tr")
 
       rows.each.with_index do |row, index|
-        @date = rows[index - 1].css("h4 .graphicDate")
+        @date = rows[index - 1].css("span.graphicDate")
         @description = row.css("p.description").text.strip
         @cast = row.css(".cast").text.strip
         @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
