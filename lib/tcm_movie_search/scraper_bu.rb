@@ -22,27 +22,29 @@ class TcmMovieSearch::Scraper
 
   def self.scraper
     doc = data_scraper(@site)
+    date_doc = data_scraper(@site)
 
+    date_rows = doc.css("#monthschedule tr")
     rows = doc.css("table tr")
 
-    rows.each.with_index do |row, index|
-      @description = row.css("p.description").text.strip
-      @cast = row.css(".cast").text.strip
-      @runtime = row.css(".lastp").text.gsub(/[^\d]/, '').strip
-      @runtime.concat ' mins'
-      @date = rows[index - 1].css("td h4 span.graphicDate").text.strip
-      @time = rows[index - 1].css("h1.nws-date").text.strip
-      @title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
-      @link = rows[index - 1].css("a").map { |link| link['href'] }
-      @link = @link[0].to_s
+      rows.each.with_index do |row, index|
+        @date = date_rows[index - 1].css("h4 graphicDate")
+        @description = row.css("p.description").text.strip
+        @cast = row.css(".cast").text.strip
+        @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
+        @runtime.concat ' mins'
+        @time = rows[index - 1].css("h1.nws-date").text.strip
+        @title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
+        @link = rows[index - 1].css("a").map { |link| link['href'] }
+        @link = @link[0].to_s
 
-      if @link.start_with?("http:")
-        @link
-        @genre = "#{@link}genre.html"
-        scrape_genre_page
-      else
-        @link = "no link available"
-      end
+        if @link.start_with?("http:")
+          @link
+          @genre = "#{@link}genre.html"
+          scrape_genre_page
+        else
+          @link = "no link available"
+        end
     end
   end
 

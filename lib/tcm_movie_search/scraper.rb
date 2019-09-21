@@ -22,13 +22,12 @@ class TcmMovieSearch::Scraper
 
   def self.scraper
     doc = data_scraper(@site)
-    date_doc = data_scraper(@site)
 
-    date_rows = doc.css("#monthschedule tr")
+    date_rows = doc.css("table tr td")
     rows = doc.css("table tr")
 
       rows.each.with_index do |row, index|
-        @date = date_rows[index - 1].css("h4 graphicDate")
+        @date = date_rows.css("h4").text.strip
         @description = row.css("p.description").text.strip
         @cast = row.css(".cast").text.strip
         @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
@@ -62,5 +61,6 @@ class TcmMovieSearch::Scraper
   def self.create_movie_obj
     TcmMovieSearch::Movies.new(@date, @time, @title, @year, @description, @cast, @runtime, @link, @genre)
   end
+
 
 end
