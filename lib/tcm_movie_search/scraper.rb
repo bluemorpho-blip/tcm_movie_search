@@ -2,6 +2,7 @@ class TcmMovieSearch::Scraper
   attr_accessor :date, :time, :title, :description, :cast, :runtime, :link, :year, :genre
 
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
+  @date_array = []
 
   def initialize
     @title = title
@@ -24,11 +25,13 @@ class TcmMovieSearch::Scraper
     doc = data_scraper(@site)
     date_doc = data_scraper(@site)
 
-    date_rows = doc.css("#monthschedule tr")
-    rows = doc.css("table tr")
+    rows = doc.css("#monthschedule tr")
 
+    rows.each do |date|
+      date = rows.css('h4').text.strip
+      @date = date
+      
       rows.each.with_index do |row, index|
-        @date = date_rows[index - 1].css("h4 graphicDate")
         @description = row.css("p.description").text.strip
         @cast = row.css(".cast").text.strip
         @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
@@ -45,6 +48,7 @@ class TcmMovieSearch::Scraper
         else
           @link = "no link available"
         end
+      end
     end
   end
 
