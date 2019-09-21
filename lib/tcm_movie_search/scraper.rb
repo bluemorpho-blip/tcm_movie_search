@@ -22,11 +22,13 @@ class TcmMovieSearch::Scraper
 
   def self.scraper
     doc = data_scraper(@site)
+    date_doc = data_scraper(@site)
 
-    rows = doc.css("#monthschedule tr")
+    date_rows = doc.css("#monthschedule tr")
+    rows = doc.css("table tr")
 
       rows.each.with_index do |row, index|
-        @date = rows[index - 1].css("span.graphicDate")
+        @date = date_rows[index - 1].css("h4 graphicDate")
         @description = row.css("p.description").text.strip
         @cast = row.css(".cast").text.strip
         @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
