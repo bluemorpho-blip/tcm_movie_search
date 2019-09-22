@@ -2,7 +2,6 @@ class TcmMovieSearch::Scraper
   attr_accessor :date, :time, :title, :description, :cast, :runtime, :link, :year, :genre
 
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
-  @date_array = []
 
   def initialize
     @title = title
@@ -26,27 +25,23 @@ class TcmMovieSearch::Scraper
 
     rows = doc.css("#monthschedule tr")
 
-    rows.each do |date|
-      @date = rows.css('h4').text.strip
+    rows.each.with_index do |row, index|
+      @date = rows.css("h4")[index]
+      @description = row.css("p.description").text.strip
+      @cast = row.css(".cast").text.strip
+      @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
+      @runtime.concat ' mins'
+      @time = rows[index - 1].css("h1.nws-date").text.strip
+      @title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
+      @link = rows[index - 1].css("a").map { |link| link['href'] }
+      @link = @link[0].to_s
 
-
-      rows.each.with_index do |row, index|
-        @description = row.css("p.description").text.strip
-        @cast = row.css(".cast").text.strip
-        @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
-        @runtime.concat ' mins'
-        @time = rows[index - 1].css("h1.nws-date").text.strip
-        @title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
-        @link = rows[index - 1].css("a").map { |link| link['href'] }
-        @link = @link[0].to_s
-
-        if @link.start_with?("http:")
-          @link
-          @genre = "#{@link}genre.html"
-          scrape_genre_page
-        else
-          @link = "no link available"
-        end
+      if @link.start_with?("http:")
+        @link
+        @genre = "#{@link}genre.html"
+        scrape_genre_page
+      else
+        @link = "no link available"
       end
     end
   end
