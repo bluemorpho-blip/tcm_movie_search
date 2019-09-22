@@ -4,6 +4,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'colorize'
+require 'date'
 
 require_relative "./tcm_movie_search/version"
 require_relative "./tcm_movie_search/cli"
