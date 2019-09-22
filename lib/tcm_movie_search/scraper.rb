@@ -1,5 +1,5 @@
 class TcmMovieSearch::Scraper
-  attr_accessor :date, :time, :title, :description, :cast, :runtime, :link, :year, :genre
+  attr_accessor :t,:date, :time, :title, :description, :cast, :runtime, :link, :year, :genre
 
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
@@ -13,6 +13,7 @@ class TcmMovieSearch::Scraper
     @genre = genre
     @date = date
     @time = time
+    @t = t
   end
 
   def self.data_scraper(url)
@@ -25,9 +26,10 @@ class TcmMovieSearch::Scraper
 
     rows = doc.css("table tr")
 
-    @date = Date.today.strftime("%B")
+    @month = Date.today.strftime("%B")
 
     rows.each.with_index do |row, index|
+      @day = "1"
       @description = row.css("p.description").text.strip
       @cast = row.css(".cast").text.strip
       @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
@@ -36,6 +38,7 @@ class TcmMovieSearch::Scraper
       @title = rows[index - 1].css("a").text.gsub(/\([^()]*\)/, '').strip
       @link = rows[index - 1].css("a").map { |link| link['href'] }
       @link = @link[0].to_s
+      check_day
 
       if @link.start_with?("http:")
         @link
@@ -45,6 +48,10 @@ class TcmMovieSearch::Scraper
         @link = "no link available"
       end
     end
+  end
+
+  def self.check_day
+    @t = @time.to_time
   end
 
   def self.scrape_genre_page
@@ -59,7 +66,7 @@ class TcmMovieSearch::Scraper
   end
 
   def self.create_movie_obj
-    TcmMovieSearch::Movies.new(@date, @time, @title, @year, @description, @cast, @runtime, @link, @genre)
+    TcmMovieSearch::Movies.new(@t, @date, @time, @title, @year, @description, @cast, @runtime, @link, @genre)
   end
 
 end
