@@ -1,8 +1,10 @@
 class TcmMovieSearch::Scraper
-  attr_accessor :date, :time, :title, :description, :cast, :runtime, :link, :year, :genre
+  attr_accessor :day, :date, :time, :title, :description, :cast, :runtime, :link, :year, :genre
 
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
-  @date = 0
+  @day = 0
+  @month = Date.today.strftime("%B")
+  @year = Date.today.strftime("%Y")
 
   def initialize
     @title = title
@@ -12,7 +14,8 @@ class TcmMovieSearch::Scraper
     @link = link
     @year = year
     @genre = genre
-    @date = date
+    @day = day
+    @month = month
     @time = time
   end
 
@@ -25,8 +28,6 @@ class TcmMovieSearch::Scraper
     doc = data_scraper(@site)
 
     rows = doc.css("table tr")
-
-    @month = Date.today.strftime("%B")
 
     rows.each.with_index do |row, index|
       @description = row.css("p.description").text.strip
@@ -42,19 +43,24 @@ class TcmMovieSearch::Scraper
         @link
         @genre = "#{@link}genre.html"
         scrape_genre_page
-        check_day
+        build_date
       else
         @link = "no link available"
       end
     end
   end
 
-  def self.check_day
-     if (@time.include?("8:") && @time.include?("PM"))
-     @date += 1
+  def self.build_date
+    if (@time.include?("8:") && @time.include?("PM"))
+     @day += 1
    else
-     @date
+     @day
    end
+
+   if @day == 0 # this is d/t the sched. starting at 8pm on day 1
+     @day = 1
+   end
+   @date = Time.parse("#{@month} #{@day}").strftime("%M %A")
   end
 
   def self.scrape_genre_page
@@ -69,7 +75,11 @@ class TcmMovieSearch::Scraper
   end
 
   def self.create_movie_obj
-    TcmMovieSearch::Movies.new(@date, @time, @title, @year, @description, @cast, @runtime, @link, @genre)
+    TcmMovieSearch::Movies.new(
+      @date, @time, @title, @year,
+      @description, @cast, @runtime,
+      @link, @genre
+      )
   end
 
 end
