@@ -22,7 +22,15 @@ class TcmMovieSearch::Movies
 
   def self.all
     TcmMovieSearch::Scraper.scraper if @@all.empty?
-    @@all.inspect.blue
+    @@all
+  end
+
+  def self.schedule
+    @@all.each do |element|
+      puts element.to_yaml.blue
+      # YAML Aint Markup Language - provides pretty
+      # formatting for output
+    end
   end
 
 end

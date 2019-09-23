@@ -11,15 +11,8 @@ class TcmMovieSearch::CLI
   end
 
   def get_movies
-    # TcmMovieSearch::Movies.new("Night of the Hunter", "Robert Mitchum sucks in his belly!", "Suspense", "1948")
-    # TcmMovieSearch::Movies.new("The Picture of Dorian Gray")
-    puts TcmMovieSearch::Movies.all
-    # @movies.each do |data|
-      # puts "\ntitle: #{data.title}"
-      # puts "brief synopsis: #{data.description}"
-      # puts "genre: #{data.genre}"
-      # puts "year released: #{data.year}"
-    # end
+    TcmMovieSearch::Movies.all
+    TcmMovieSearch::Movies.schedule
     call
   end
 

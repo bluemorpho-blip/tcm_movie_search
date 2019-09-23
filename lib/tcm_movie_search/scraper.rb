@@ -66,8 +66,11 @@ class TcmMovieSearch::Scraper
   def self.scrape_genre_page
     begin
       doc = data_scraper(@genre)
-      @genre = doc.css("tr.tdrwodd").text.gsub(/\n/, '').strip
+      @genre = doc.css("tr.tdrwodd").text.strip # gsub(/\n/, '').strip
       @year = doc.css("span.dbyear").text.gsub(/[()]/, '').strip
+      if @year == "0"
+        @year = "no release date provided"
+      end
       rescue
       @genre = "no genre listed"
     end
