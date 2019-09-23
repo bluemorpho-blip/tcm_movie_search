@@ -1,5 +1,8 @@
 class TcmMovieSearch::Scraper
-  attr_accessor :day, :date, :time, :title, :description, :cast, :runtime, :link, :year, :genre
+  attr_accessor :day, :date, :time, :title,
+                :description, :cast, :runtime,
+                :link, :year, :year_released,
+                :genre, :genre_1, :genre_2
 
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
   @day = 0
@@ -12,8 +15,10 @@ class TcmMovieSearch::Scraper
     @cast = cast
     @runtime - runtime
     @link = link
-    @year = year
+    @year_released = year_released
     @genre = genre
+    @genre_1 = genre_1
+    @genre_2 = genre_2
     @day = day
     @month = month
     @time = time
@@ -66,10 +71,11 @@ class TcmMovieSearch::Scraper
   def self.scrape_genre_page
     begin
       doc = data_scraper(@genre)
-      @genre = doc.css("tr.tdrwodd").text.strip # gsub(/\n/, '').strip
-      @year = doc.css("span.dbyear").text.gsub(/[()]/, '').strip
-      if @year == "0"
-        @year = "no release date provided"
+      @genre_1 = doc.css("tr.tdrwodd").text.strip # gsub(/\n/, '').strip
+      @genre_2 = doc.css("tr.tdreven").text.strip # gsub(/\n/, '').strip
+      @year_released = doc.css("span.dbyear").text.gsub(/[()]/, '').strip
+      if @year_released == "0"
+        @year_released = "no release date provided"
       end
       rescue
       @genre = "no genre listed"
@@ -79,9 +85,9 @@ class TcmMovieSearch::Scraper
 
   def self.create_movie_obj
     TcmMovieSearch::Movies.new(
-      @date, @time, @title, @year,
+      @date, @time, @title, @year_released,
       @description, @cast, @runtime,
-      @link, @genre
+      @link, @genre_1, @genre_2
       )
   end
 
