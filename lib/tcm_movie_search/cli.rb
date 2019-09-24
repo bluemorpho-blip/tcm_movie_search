@@ -12,7 +12,6 @@ class TcmMovieSearch::CLI
 
   def get_movies
     TcmMovieSearch::Movies.all
-    TcmMovieSearch::Movies.schedule
     call
   end
 
@@ -32,12 +31,12 @@ class TcmMovieSearch::CLI
     chosen_option = gets.strip.to_i
      case chosen_option
      when 1
-       search
+       search_menu
      when 2
        puts "gathering the movie schedule."
        puts "this can take a few minutes."
        puts "please wait."
-       get_movies
+       get_schedule
      when 3
        get_scraped_movie
      when 4
@@ -51,35 +50,34 @@ class TcmMovieSearch::CLI
      end
   end
 
-   def search
+  def get_schedule
+      TcmMovieSearch::Movies.schedule
+      call
+    end
+
+   def search_menu
      puts "search:".blue
-     search = gets.strip.downcase
-     if search == "exit"
+     keyword = gets.strip.downcase
+     if keyword == "exit"
        call
-     elsif search == "end"
+     elsif keyword == "end"
        return
-     elsif search == "" # can't search for whitespaces
+     elsif keyword == "" # can't search for whitespaces
      puts "invalid search entry"
-     search
+     search_menu
      else
-      search_results(search)
+      search(keyword)
      end
      call
    end
 
-   def search_results(search)
-     title = "The Picture of Dorian Gray"
-     synopsis = "Brief Synopsis:
-     A man remains young and handsome while his
-     portrait shows the ravages of age and sin.
-     (1945)"
-     if (synopsis.downcase.include?(search) || title.downcase.include?(search))
-       puts title
-       puts synopsis
-     else
-       puts "no results found."
+   def search(keyword)
+     if TcmMovieSearch::Movies.all.include?(keyword)
+       puts "keyword found!"
+       puts ""
      end
-   end
+    call
+  end
 
    def get_scraped_movie # test
      scrape_box = []

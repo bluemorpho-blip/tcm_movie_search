@@ -30,11 +30,15 @@ class TcmMovieSearch::Movies
   end
 
   def self.schedule
+    movie_schedule = []
+    TcmMovieSearch::Scraper.scraper if @@all.empty?
     @@all.each do |element|
-      puts element.to_yaml.blue
+      movie_schedule << element.to_yaml.blue
       # YAML Aint Markup Language - provides pretty
       # formatting for output
     end
+    puts Movies
+  end
 
     def self.out_to_file
       file = file.open("tcm_schedule.txt", "w")
@@ -43,7 +47,5 @@ class TcmMovieSearch::Movies
       end
       file.close
     end
-
-  end
 
 end
