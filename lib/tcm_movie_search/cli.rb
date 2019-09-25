@@ -74,6 +74,7 @@ class TcmMovieSearch::CLI
 
    def search(keyword)
      if TcmMovieSearch::Movies.all.to_s.include?(keyword)
+       TcmMovieSearch::Movies.all.map.with_index{ |item, index| [item, index] }
         puts "keyword found!"
       else
         puts "no match"
