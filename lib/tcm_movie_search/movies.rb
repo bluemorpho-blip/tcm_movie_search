@@ -37,12 +37,4 @@ class TcmMovieSearch::Movies
       # formatting for output
   end
 
-    def self.out_to_file
-      file = file.open("tcm_schedule.txt", "w")
-      @@all.each do |element|
-        file.puts(element.to_yaml)
-      end
-      file.close
-    end
-
 end

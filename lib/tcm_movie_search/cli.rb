@@ -1,4 +1,3 @@
-# TcmMovieSearch::CLI class will directly interact with the user
 class TcmMovieSearch::CLI
   attr_accessor :keyword
 
@@ -11,13 +10,8 @@ class TcmMovieSearch::CLI
     get_user_option
   end
 
-  def get_movies
-    TcmMovieSearch::Movies.all
-    call
-  end
-
   def menu_options
-    @menu = ["search", "schedule", "scraper test", "return to menu", "exit application",]
+    @menu = ["search", "schedule", "return to menu", "exit application",]
   end
 
   def list_options
@@ -39,16 +33,19 @@ class TcmMovieSearch::CLI
        puts "please wait."
        get_schedule
      when 3
-       get_scraped_movie
-     when 4
        call
-     when 5
+     when 4
        exit
      else
        puts "not a valid choice, please select again".blue
        puts "choice:".blue
        get_user_option
      end
+  end
+
+  def get_movies
+    TcmMovieSearch::Movies.all
+    call
   end
 
   def get_schedule
@@ -73,25 +70,15 @@ class TcmMovieSearch::CLI
    end
 
    def search(keyword)
-      TcmMovieSearch::Movies.all.each do |sub_array|
-        sub_array.each.with_index do |item, index|
-          if [item].include?(keyword)
-            puts "#{keyword} found at index#{index}"
-          else
-            puts "#{keyword} not found."
-            puts "#{index} checked."
-          end
+      TcmMovieSearch::Movies.all.each.with_index do |data, index|
+        if [data].include?(keyword)
+          puts "#{keyword} found at index#{index}"
+        else
+          puts "#{keyword} not found."
+          puts "#{index} checked."
         end
       end
     call
   end
-
-   def get_scraped_movie # test
-     scrape_box = []
-     scrape_box << TcmMovieSearch::Scraper.scrape.text.gsub(/\([^()]*\)/, '') # removes the date
-     puts scrape_box
-     call
-   end
-
 
  end
