@@ -10,11 +10,11 @@ class TcmMovieSearch::Movies
     @date = date
     @time = time
     @title = title
+    @year_released = year_released
     @description = description
     @cast = cast
     @runtime = runtime
     @link = link
-    @year_released = year_released
     @genre_1 = genre_1
     @genre_2 = genre_2
     save
