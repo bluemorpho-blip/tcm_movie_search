@@ -91,7 +91,6 @@ class TcmMovieSearch::Scraper
       @link, @genre_1, @genre_2
       )
       movie.to_s
-      puts movie.inspect
   end
 
 end

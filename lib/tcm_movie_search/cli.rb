@@ -73,11 +73,11 @@ class TcmMovieSearch::CLI
    end
 
    def search(keyword)
-     if TcmMovieSearch::Movies.all.to_s.include?(keyword)
-       TcmMovieSearch::Movies.all.map.with_index{ |item, index| [item, index] }
+      TcmMovieSearch::Movies.all.each do |value|
+        if TcmMovieSearch::Movies.all.include?(value)
+        #   display or << to an array the idex contents
         puts "keyword found!"
-      else
-        puts "no match"
+        end
       end
     call
   end
