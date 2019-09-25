@@ -73,10 +73,14 @@ class TcmMovieSearch::CLI
    end
 
    def search(keyword)
-      TcmMovieSearch::Movies.all.each do |value|
-        if TcmMovieSearch::Movies.all.include?(value)
-        #   display or << to an array the idex contents
-        puts "keyword found!"
+      TcmMovieSearch::Movies.all.each do |sub_array|
+        sub_array.each.with_index do |item, index|
+          if [item].include?(keyword)
+            puts "#{keyword} found at index#{index}"
+          else
+            puts "#{keyword} not found."
+            puts "#{index} checked."
+          end
         end
       end
     call
