@@ -1,5 +1,6 @@
 # TcmMovieSearch::CLI class will directly interact with the user
 class TcmMovieSearch::CLI
+  attr_accessor :keyword
 
   # tcm_movie_search starts here
   def call
@@ -57,7 +58,7 @@ class TcmMovieSearch::CLI
 
    def search_menu
      puts "search:".blue
-     keyword = gets.strip.downcase
+     keyword = gets.strip
      if keyword == "exit"
        call
      elsif keyword == "end"
@@ -72,10 +73,11 @@ class TcmMovieSearch::CLI
    end
 
    def search(keyword)
-     if TcmMovieSearch::Movies.all.include?(keyword)
-       puts "keyword found!"
-       puts ""
-     end
+     if TcmMovieSearch::Movies.all.to_s.include?(keyword)
+        puts "keyword found!"
+      else
+        puts "no match"
+      end
     call
   end
 

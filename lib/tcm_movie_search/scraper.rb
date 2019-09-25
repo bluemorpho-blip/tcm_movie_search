@@ -84,7 +84,8 @@ class TcmMovieSearch::Scraper
   end
 
   def self.create_movie_obj
-    TcmMovieSearch::Movies.new(
+    label = @title
+    label = TcmMovieSearch::Movies.new(
       @date, @time, @title, @year_released,
       @description, @cast, @runtime,
       @link, @genre_1, @genre_2

@@ -30,14 +30,11 @@ class TcmMovieSearch::Movies
   end
 
   def self.schedule
-    movie_schedule = []
-    TcmMovieSearch::Scraper.scraper if @@all.empty?
-    @@all.each do |element|
-      movie_schedule << element.to_yaml.blue
+    all
+    puts @@all.to_yaml.blue
+    puts ""
       # YAML Aint Markup Language - provides pretty
       # formatting for output
-    end
-    puts Movies
   end
 
     def self.out_to_file
