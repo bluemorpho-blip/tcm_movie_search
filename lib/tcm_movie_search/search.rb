@@ -1,8 +1,8 @@
 class TcmMovieSearch::Search
 
      def self.search_menu
-       puts "Search Menu".underline
-       puts "enter search word:\nor".blue
+       puts "\nSearch Menu".underline
+       puts "\nenter search word:\nor".blue
        puts "'".blue + "1" + "' to return to main menu".blue
        puts "'".blue + "2" + "' to exit application".blue
        keyword = gets.strip

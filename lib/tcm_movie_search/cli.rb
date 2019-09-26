@@ -14,9 +14,10 @@ class TcmMovieSearch::CLI
   end
 
   def list_options
-    puts "\nChoose an option:".blue
+    puts "\nMain Menu".underline
+    puts "\nChoose an option:"
     @menu.each.with_index(1) do |option, index|
-      puts "#{index}." + " #{option}\n".blue
+      puts "#{index}." + " #{option}".blue
     end
   end
 
@@ -72,7 +73,7 @@ class TcmMovieSearch::CLI
 
    def search(keyword)
       TcmMovieSearch::Movies.all.each.with_index do |data, index|
-        if data.inspect.include?(keyword)
+        if data.inspect.downcase.include?(keyword.downcase)
           puts "search results for #{keyword.white.underline}:".blue
           puts "\n#{index}: #{data.to_yaml}".blue
         end
