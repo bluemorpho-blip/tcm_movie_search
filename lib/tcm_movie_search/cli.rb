@@ -71,8 +71,8 @@ class TcmMovieSearch::CLI
    def search(keyword)
       TcmMovieSearch::Movies.all.each.with_index do |data, index|
         if data.inspect.include?(keyword)
-          puts "search results for #{keyword.blue.underline}:"
-          puts "\n#{index}: #{data.to_yaml}"
+          puts "search results for #{keyword.white.underline}:".blue
+          puts "\n#{index}: #{data.to_yaml}".blue
         end
       end
     call

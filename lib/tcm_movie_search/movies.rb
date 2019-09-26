@@ -31,7 +31,7 @@ class TcmMovieSearch::Movies
 
   def self.schedule
     all
-    puts "\n#{@@all.to_yaml.blue}"
+    puts @@all.to_yaml.blue
       # YAML Aint Markup Language - provides pretty
       # formatting for output
   end
