@@ -25,12 +25,12 @@ class TcmMovieSearch::CLI
     chosen_option = gets.strip.to_i
      case chosen_option
      when 1
-       search_menu
+       TcmMovieSearch::Search.search_menu
      when 2
        puts "gathering the movie schedule."
        puts "this can take a few minutes."
        puts "please wait."
-       get_schedule
+       TcmMovieSearch::Movies.schedule
      when 3
        call
      when 4
@@ -40,6 +40,7 @@ class TcmMovieSearch::CLI
        puts "choice:".blue
        get_user_option
      end
+     call
   end
 
   def get_movies
