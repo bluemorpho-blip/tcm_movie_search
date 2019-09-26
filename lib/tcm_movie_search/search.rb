@@ -1,9 +1,10 @@
 class TcmMovieSearch::Search
 
      def self.search_menu
+       puts "Search Menu".underline
        puts "enter search word:\nor".blue
-       puts "'1' to return to main menu".blue
-       puts "'2' to exit application".blue
+       puts "'".blue + "1" + "' to return to main menu".blue
+       puts "'".blue + "2" + "' to exit application".blue
        keyword = gets.strip
        if keyword == "1"
          return
@@ -18,14 +19,13 @@ class TcmMovieSearch::Search
       return
      end
 
-     def search(keyword)
+     def self.search(keyword)
         TcmMovieSearch::Movies.all.each.with_index do |data, index|
           if data.inspect.include?(keyword)
-            puts "search results for #{keyword.white.underline}:".blue
+            puts "search results for ".blue + "#{keyword.underline}:"
             puts "\n#{index}: #{data.to_yaml}".blue
           end
         end
     end
-
 
 end

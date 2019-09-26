@@ -30,10 +30,14 @@ class TcmMovieSearch::Movies
   end
 
   def self.schedule
-    all
-    puts @@all.to_yaml.blue
+    all.each.with_index do |data, index|
+    # puts @@all.to_yaml.blue
+    puts ""
+    puts "#{index}: #{data.to_yaml}".blue
       # YAML Aint Markup Language - provides pretty
       # formatting for output
+    end
+    return
   end
 
 end

@@ -16,7 +16,7 @@ class TcmMovieSearch::CLI
   def list_options
     puts "\nChoose an option:".blue
     @menu.each.with_index(1) do |option, index|
-      puts "#{index}. #{option}".blue
+      puts "#{index}." + " #{option}\n".blue
     end
   end
 
@@ -54,6 +54,7 @@ class TcmMovieSearch::CLI
     end
 
    def search_menu
+     puts "Main Menu".underline
      puts "search:".blue
      keyword = gets.strip
      if keyword == "exit"
