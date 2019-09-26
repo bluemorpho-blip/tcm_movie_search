@@ -2,7 +2,7 @@ class TcmMovieSearch::Scraper
   attr_accessor :day, :date, :time, :title,
                 :description, :cast, :runtime,
                 :link, :year, :year_released,
-                :genre, :genre_1, :genre_2
+                :genre, :genre_1, :genre_2, :month
 
   @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
   @day = 0

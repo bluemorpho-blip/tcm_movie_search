@@ -13,6 +13,7 @@ require_relative './tcm_movie_search/cli'
 require_relative './tcm_movie_search/scraper'
 require_relative './tcm_movie_search/movies'
 require_relative './tcm_movie_search/search'
+require_relative './tcm_movie_search/save_movie'
 
 require 'pry'
 

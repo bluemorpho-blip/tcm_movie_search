@@ -3,7 +3,10 @@ class TcmMovieSearch::CLI
 
   # tcm_movie_search starts here
   def call
+    month = Date.today.strftime("%B")
+    year = Date.today.strftime("%Y")
     puts "\nTCM movie schedule and search"
+    puts "for #{month} #{year}"
     menu_options
     list_options
     get_user_option
