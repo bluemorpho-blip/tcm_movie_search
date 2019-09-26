@@ -4,14 +4,13 @@ class TcmMovieSearch::CLI
   # tcm_movie_search starts here
   def call
     puts "\nTCM movie schedule and search"
-    puts ""
     menu_options
     list_options
     get_user_option
   end
 
   def menu_options
-    @menu = ["search", "schedule", "return to menu", "exit application",]
+    @menu = ["search", "schedule", "return to menu", "exit application"]
   end
 
   def list_options
@@ -72,7 +71,8 @@ class TcmMovieSearch::CLI
    def search(keyword)
       TcmMovieSearch::Movies.all.each.with_index do |data, index|
         if data.inspect.include?(keyword)
-          puts "#{index}: #{data.inspect}"
+          puts "search results for #{keyword.blue.underline}:"
+          puts "\n#{index}: #{data.to_yaml}"
         end
       end
     call
