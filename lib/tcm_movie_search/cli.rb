@@ -71,11 +71,8 @@ class TcmMovieSearch::CLI
 
    def search(keyword)
       TcmMovieSearch::Movies.all.each.with_index do |data, index|
-        if [data].include?(keyword)
-          puts "#{keyword} found at index#{index}"
-        else
-          puts "#{keyword} not found."
-          puts "#{index} checked."
+        if data.inspect.include?(keyword)
+          puts "#{index}: #{data.inspect}"
         end
       end
     call
