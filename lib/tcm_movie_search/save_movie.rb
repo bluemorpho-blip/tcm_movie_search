@@ -12,7 +12,7 @@ class TcmMovieSearch::SaveMovie
     when 'y' || 'yes'
       TcmMovieSearch::SaveMovie.save_movie
     else
-      return
+      TcmMovieSearch::Search.search_menu
     end
   end
 
@@ -42,19 +42,19 @@ class TcmMovieSearch::SaveMovie
      case chosen_option
      when 1
        f = File.new('movies.txt', 'w')
-       f.write(@@saved_list.to_yaml)
+       f.write(@@saved_list.to_yaml.blue)
        f.close
+       movie_file
      when 2
        puts @@saved_list.to_yaml.blue
-       return
+       movie_file
      when 3
-       save_a_movie
+       TcmMovieSearch::Search.search_menu
      else
        puts "not a valid choice, please select again".blue
        puts "choice:".blue
        movie_file
      end
-     save_a_movie
   end
 
 end

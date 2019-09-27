@@ -1,0 +1,36 @@
+[0;34;49m---
+- !ruby/object:TcmMovieSearch::Movies
+  date: September 29 Sunday
+  time: 10:00 AM
+  title: Harder They Fall, The
+  year_released: '1956'
+  description: A cynical press agent exposes inhuman conditions in the boxing game.
+  cast: |-
+    Mark Robson
+
+    Humphrey Bogart
+
+    Rod Steiger
+
+    Jan Sterling
+  runtime: 109 mins
+  link: http://www.tcm.com/tcmdb/title/193/Harder-They-Fall-The/
+  genre_1: |-
+    Genre:
+    Drama
+
+    Genre:
+    Adaptation
+
+    Genre:
+    Classic Hollywood
+  genre_2: |-
+    Genre:
+    Sports
+
+    Genre:
+    Film Noir
+
+    Sub Genre:
+    Boxing Drama
+[0m

@@ -24,10 +24,9 @@ class TcmMovieSearch::Search
       if data.inspect.downcase.include?(keyword.downcase)
         puts "search results for ".blue + "#{keyword.underline}:"
         puts "\nindex: #{index}\n" + "#{data.to_yaml}".blue
-        TcmMovieSearch::SaveMovie.save_a_movie
       end
     end
-    return
+    TcmMovieSearch::SaveMovie.save_a_movie
   end
 
 end
