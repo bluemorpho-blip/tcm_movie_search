@@ -13,7 +13,7 @@ class TcmMovieSearch::CLI
   end
 
   def menu_options
-    @menu = ["search", "schedule", "return to menu", "exit application"]
+    @menu = ["search", "schedule", "return to menu", "saved movies", "exit application"]
   end
 
   def list_options
@@ -38,6 +38,8 @@ class TcmMovieSearch::CLI
      when 3
        call
      when 4
+       puts TcmMovieSearch::SaveMovie.saved_list.to_yaml
+     when 5
        exit
      else
        puts "not a valid choice, please select again".blue
