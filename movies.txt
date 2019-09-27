@@ -1,20 +1,21 @@
 [0;34;49m---
 - !ruby/object:TcmMovieSearch::Movies
-  date: September 29 Sunday
+  date: September 01 Sunday
   time: 10:00 AM
-  title: Harder They Fall, The
-  year_released: '1956'
-  description: A cynical press agent exposes inhuman conditions in the boxing game.
+  title: Picture of Dorian Gray, The
+  year_released: '1945'
+  description: A man remains young and handsome while his portrait shows the ravages
+    of age and sin.
   cast: |-
-    Mark Robson
+    Albert Lewin
 
-    Humphrey Bogart
+    George Sanders
 
-    Rod Steiger
+    Hurd Hatfield
 
-    Jan Sterling
-  runtime: 109 mins
-  link: http://www.tcm.com/tcmdb/title/193/Harder-They-Fall-The/
+    Donna Reed
+  runtime: 110 mins
+  link: http://www.tcm.com/tcmdb/title/2821/Picture-of-Dorian-Gray-The/
   genre_1: |-
     Genre:
     Drama
@@ -22,15 +23,12 @@
     Genre:
     Adaptation
 
-    Genre:
-    Classic Hollywood
+    Sub Genre:
+    Historical Drama
   genre_2: |-
     Genre:
-    Sports
+    Horror
 
     Genre:
-    Film Noir
-
-    Sub Genre:
-    Boxing Drama
+    Classic Hollywood
 [0m

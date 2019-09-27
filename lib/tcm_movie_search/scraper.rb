@@ -1,28 +1,6 @@
 class TcmMovieSearch::Scraper
-  attr_accessor :day, :date, :time, :title,
-                :description, :cast, :runtime,
-                :link, :year, :year_released,
-                :genre, :genre_1, :genre_2, :month
 
-  @site = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
-  @day = 0
-  @month = Date.today.strftime("%B")
-  @year = Date.today.strftime("%Y")
-
-  def initialize
-    @title = title
-    @description = description
-    @cast = cast
-    @runtime - runtime
-    @link = link
-    @year_released = year_released
-    @genre = genre
-    @genre_1 = genre_1
-    @genre_2 = genre_2
-    @day = day
-    @month = month
-    @time = time
-  end
+  SITE = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
   def self.data_scraper(url)
     Nokogiri::HTML(open(url))
@@ -30,7 +8,10 @@ class TcmMovieSearch::Scraper
   end
 
   def self.scraper
-    doc = data_scraper(@site)
+    puts "loading TCM movie schedule".red
+    puts "please wait".red
+
+    doc = data_scraper(SITE)
 
     rows = doc.css("table tr")
 
@@ -53,19 +34,23 @@ class TcmMovieSearch::Scraper
         @link = "no link available"
       end
     end
+    puts "movies loaded".red
   end
 
   def self.build_date
+    day = 0
+    month = Date.today.strftime("%B")
+    year = Date.today.strftime("%Y")
     if (@time.include?("8:") && @time.include?("PM"))
-     @day += 1
+     day += 1
    else
-     @day
+     day
    end
 
-   if @day == 0 # this is d/t the sched. starting at 8pm on day 1
-     @day = 1
+   if day == 0 # this is d/t the sched. starting at 8pm on day 1
+     day = 1
    end
-   @date = Time.parse("#{@month} #{@day}").strftime("%B %d %A")
+   @date = Time.parse("#{month} #{day}").strftime("%B %d %A")
   end
 
   def self.scrape_genre_page
@@ -84,13 +69,11 @@ class TcmMovieSearch::Scraper
   end
 
   def self.create_movie_obj
-    movie = @title
-    movie = TcmMovieSearch::Movies.new(
+    TcmMovieSearch::Movies.new(
       @date, @time, @title, @year_released,
       @description, @cast, @runtime,
       @link, @genre_1, @genre_2
       )
-      movie.to_s
   end
 
 end
