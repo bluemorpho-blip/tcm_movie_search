@@ -11,8 +11,8 @@ class TcmMovieSearch::Search
    elsif keyword == "2"
      exit
    elsif keyword == "" # can't search for whitespaces
-   puts "invalid search entry"
-   search_menu
+     puts "invalid search entry"
+     search_menu
    else
     search(keyword)
   end
@@ -24,17 +24,10 @@ class TcmMovieSearch::Search
       if data.inspect.downcase.include?(keyword.downcase)
         puts "search results for ".blue + "#{keyword.underline}:"
         puts "\nindex: #{index}\n" + "#{data.to_yaml}".blue
+        TcmMovieSearch::SaveMovie.save_a_movie
       end
     end
-
-    puts "Save a movie?\n 'y' or 'n'"
-    user_choice = gets.strip
-    case user_choice.downcase
-    when 'y' || 'yes'
-      TcmMovieSearch::SaveMovie.save_movie
-    else
-      return
-    end
+    return
   end
 
 end

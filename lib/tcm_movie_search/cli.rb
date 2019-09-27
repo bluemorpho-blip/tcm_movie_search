@@ -59,31 +59,4 @@ class TcmMovieSearch::CLI
       call
     end
 
-   def search_menu
-     puts "Main Menu".underline
-     puts "search:".blue
-     keyword = gets.strip
-     if keyword == "exit"
-       call
-     elsif keyword == "end"
-       return
-     elsif keyword == "" # can't search for whitespaces
-     puts "invalid search entry"
-     search_menu
-     else
-      search(keyword)
-     end
-     call
-   end
-
-   def search(keyword)
-      TcmMovieSearch::Movies.all.each.with_index do |data, index|
-        if data.inspect.downcase.include?(keyword.downcase)
-          puts "search results for #{keyword.white.underline}:".blue
-          puts "\n#{index}: #{data.to_yaml}".blue
-        end
-      end
-    call
-  end
-
  end
