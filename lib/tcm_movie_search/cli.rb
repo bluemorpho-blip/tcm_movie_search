@@ -38,7 +38,8 @@ class TcmMovieSearch::CLI
      when 3
        call
      when 4
-       puts TcmMovieSearch::SaveMovie.saved_list.to_yaml
+       puts "saved movies:"
+       puts TcmMovieSearch::SaveMovie.saved_list.to_yaml.blue
      when 5
        exit
      else
