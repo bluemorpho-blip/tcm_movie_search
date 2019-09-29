@@ -15,13 +15,13 @@ class TcmMovieSearch::Scraper
 
     month = Date.today.strftime("%B")
     year = Date.today.strftime("%Y")
-    puts "\nmovies for #{month} #{year}: ".blue + movies.count.to_s.green
+    puts "\nmovies for #{month} #{year}: ".blue + movies.count.to_s.yellow
     puts "gathering movies".blue
     puts "please wait\n".blue
 
     rows = doc.css("table tr")
     rows.each.with_index do |row, index|
-        printf("\rmovies scanned: ".blue + "#{@counter.to_i}".green)
+        printf("\rmovies scanned: ".blue + "#{@counter.to_i}".yellow)
       @description = row.css("p.description").text.strip
       @cast = row.css(".cast").text.strip
       @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
@@ -72,15 +72,21 @@ class TcmMovieSearch::Scraper
       rescue
       @genre = "no genre listed"
     end
-      create_movie_obj
+      # create_movie_obj
+      TcmMovieSearch::Movies.new(
+        @date, @time, @title, @year_released,
+        @description, @cast, @runtime,
+        @link, @genre_1, @genre_2
+        )
+        @counter += 1
   end
 
-  def self.create_movie_obj
-    TcmMovieSearch::Movies.new(
-      @date, @time, @title, @year_released,
-      @description, @cast, @runtime,
-      @link, @genre_1, @genre_2
-      )
-      @counter += 1
-  end
+  # def self.create_movie_obj
+  #  TcmMovieSearch::Movies.new(
+  #    @date, @time, @title, @year_released,
+  #    @description, @cast, @runtime,
+  #    @link, @genre_1, @genre_2
+  #    )
+  #    @counter += 1
+  # end
 end
