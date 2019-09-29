@@ -44,7 +44,7 @@ class TcmMovieSearch::SaveMovie
        f = File.new('movies.txt', 'w')
        f.write(@@saved_list.to_yaml.blue)
        f.close
-       puts "saved to".blue + "tcm_movie_search/movies.txt"
+       puts "saved to: ".blue + "tcm_movie_search/movies.txt\n".underline
        movie_file
      when 2
        puts @@saved_list.to_yaml.blue
