@@ -2,21 +2,25 @@ class TcmMovieSearch::CLI
   attr_accessor :keyword
 
   # tcm_movie_search starts here
-  def call
-    month = Date.today.strftime("%B")
-    year = Date.today.strftime("%Y")
-    puts "\nTCM movie schedule and search"
-    puts "for #{month} #{year}"
+  def self.call
+    schedule_date
     menu_options
     list_options
     get_user_option
   end
 
-  def menu_options
+  def self.schedule_date
+    month = Date.today.strftime("%B")
+    year = Date.today.strftime("%Y")
+    puts "\nTCM movie schedule and search"
+    puts "for #{month} #{year}"
+  end
+
+  def self.menu_options
     @menu = ["search", "schedule", "return to menu", "saved movies", "exit application"]
   end
 
-  def list_options
+  def self.list_options
     puts "\nMain Menu".underline
     puts "\nChoose an option:"
     @menu.each.with_index(1) do |option, index|
@@ -24,16 +28,13 @@ class TcmMovieSearch::CLI
     end
   end
 
-  def get_user_option
+  def self.get_user_option
     # replace with case statement
     chosen_option = gets.strip.to_i
      case chosen_option
      when 1
        TcmMovieSearch::Search.search_menu
      when 2
-       puts "gathering the movie schedule."
-       puts "this can take a few minutes."
-       puts "please wait."
        TcmMovieSearch::Movies.schedule
      when 3
        call
@@ -47,17 +48,17 @@ class TcmMovieSearch::CLI
        puts "choice:".blue
        get_user_option
      end
-     call
+     self.call
   end
 
-  def get_movies
+  def self.get_movies
     TcmMovieSearch::Movies.all
-    call
+    self.call
   end
 
-  def get_schedule
+  def self.get_schedule
       TcmMovieSearch::Movies.schedule
-      call
+      self.call
     end
 
  end

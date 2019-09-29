@@ -8,16 +8,20 @@ class TcmMovieSearch::Scraper
   end
 
   def self.scraper
-    puts "loading TCM movie schedule".red
-    puts "please wait\n".red
-
-
     doc = data_scraper(SITE)
-    @count = 0
+    movies = doc.css("h2 a")
+
+    @counter = 0
+
+    month = Date.today.strftime("%B")
+    year = Date.today.strftime("%Y")
+    puts "\nmovies for #{month} #{year}: ".blue + movies.count.to_s.green
+    puts "gathering movies".blue
+    puts "please wait\n".blue
 
     rows = doc.css("table tr")
     rows.each.with_index do |row, index|
-        printf("\rmovies scanned: #{@count.to_i}".green)
+        printf("\rmovies scanned: ".blue + "#{@counter.to_i}".green)
       @description = row.css("p.description").text.strip
       @cast = row.css(".cast").text.strip
       @runtime = row.css("td .lastp").text.gsub(/[^\d]/, '').strip
@@ -37,7 +41,7 @@ class TcmMovieSearch::Scraper
       end
     end
 
-    puts "\nmovies loaded".red
+    puts "\nmovies loaded".blue
   end
 
   def self.build_date
@@ -77,6 +81,6 @@ class TcmMovieSearch::Scraper
       @description, @cast, @runtime,
       @link, @genre_1, @genre_2
       )
-      @count += 1
+      @counter += 1
   end
 end

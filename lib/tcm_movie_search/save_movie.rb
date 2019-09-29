@@ -5,19 +5,19 @@ class TcmMovieSearch::SaveMovie
     @@saved_list
   end
 
-  def self.save_a_movie
+  def self.save_option
     puts "Save movie?\n 'y' or 'n'"
     user_choice = gets.strip
     case user_choice.downcase
     when 'y' || 'yes'
       TcmMovieSearch::SaveMovie.save_movie
     else
-      TcmMovieSearch::Search.search_menu
+      TcmMovieSearch::CLI.call
     end
   end
 
   def self.save_movie
-    puts "enter the index number of the movie to save:"
+    puts "\nenter the index number of the movie to save:"
     puts "'".blue + "exit" + "' when finished".blue
     user_input = gets.strip
     if user_input == "exit"
@@ -34,6 +34,7 @@ class TcmMovieSearch::SaveMovie
   end
 
   def self.movie_file
+    puts "save movie options:"
     puts "'".blue + "1" + "' to save your movie list in a file".blue
     puts "'".blue + "2" + "' to view your movie list".blue
     puts "'".blue + "3" + "' to exit".blue
@@ -44,12 +45,13 @@ class TcmMovieSearch::SaveMovie
        f = File.new('movies.txt', 'w')
        f.write(@@saved_list.to_yaml.blue)
        f.close
+       puts "saved to".blue + "tcm_movie_search/movies.txt"
        movie_file
      when 2
        puts @@saved_list.to_yaml.blue
        movie_file
      when 3
-       TcmMovieSearch::Search.search_menu
+       TcmMovieSearch::CLI.call
      else
        puts "not a valid choice, please select again".blue
        puts "choice:".blue

@@ -26,7 +26,7 @@ class TcmMovieSearch::Search
         puts "\nindex: #{index}\n" + "#{data.to_yaml}".blue
       end
     end
-    TcmMovieSearch::SaveMovie.save_a_movie
+    TcmMovieSearch::SaveMovie.save_option
   end
 
 end
