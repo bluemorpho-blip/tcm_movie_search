@@ -30,7 +30,6 @@ class TcmMovieSearch::SaveMovie
       puts "no match found, please try again"
       save_movie
     end
-    #Tcm::Search.search_menu
   end
 
   def self.movie_file

@@ -1,5 +1,4 @@
 class TcmMovieSearch::CLI
-  attr_accessor :keyword
 
   # tcm_movie_search starts here
   def self.call

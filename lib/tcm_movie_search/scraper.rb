@@ -72,7 +72,7 @@ class TcmMovieSearch::Scraper
       rescue
       @genre = "no genre listed"
     end
-      # create_movie_obj
+
       TcmMovieSearch::Movies.new(
         @date, @time, @title, @year_released,
         @description, @cast, @runtime,
@@ -81,12 +81,4 @@ class TcmMovieSearch::Scraper
         @counter += 1
   end
 
-  # def self.create_movie_obj
-  #  TcmMovieSearch::Movies.new(
-  #    @date, @time, @title, @year_released,
-  #    @description, @cast, @runtime,
-  #    @link, @genre_1, @genre_2
-  #    )
-  #    @counter += 1
-  # end
 end
