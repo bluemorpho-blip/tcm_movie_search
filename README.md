@@ -1,5 +1,7 @@
 # TcmMovieSearch
 
+A CLI Scraper project using Open_URI and Nokogiri to search this month's TCM.com (Turner Classic Movies) schedule by keyword.  Save a list a selected movies to a movies.txt file and/or view the list of selected movies.
+
 run cli:
 ./bin/tcm_movies from terminal
 
@@ -32,6 +34,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'kooky-form-5899'/tcm_movie_search. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Authors
+
+* **Ronnie Stephens** - *initial work* - [RStephens5911](https://github.com/RStephens5911)
 
 ## License
 
