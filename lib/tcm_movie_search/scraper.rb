@@ -1,4 +1,5 @@
 class TcmMovieSearch::Scraper
+  attr_accessor :date
 
   SITE = "http://www.tcm.com/schedule/monthly.html?ecid=subnavmonthschedule"
 
@@ -12,10 +13,11 @@ class TcmMovieSearch::Scraper
     movies = doc.css("h2 a")
 
     @counter = 0
+    @day = 0
+    @month = Date.today.strftime("%B")
+    @year = Date.today.strftime("%Y")
 
-    month = Date.today.strftime("%B")
-    year = Date.today.strftime("%Y")
-    puts "\nmovies for #{month} #{year}: ".red + movies.count.to_s.green
+    puts "\nmovies for #{@month} #{@year}: ".red + movies.count.to_s.green
     puts "gathering movies".red
     puts "please wait\n".red
 
@@ -39,25 +41,21 @@ class TcmMovieSearch::Scraper
       else
         @link = "no link available"
       end
+      #build_date
     end
 
     puts "\nmovies loaded".red
   end
 
   def self.build_date
-    day = 0
-    month = Date.today.strftime("%B")
-    year = Date.today.strftime("%Y")
     if (@time.include?("8:") && @time.include?("PM"))
-     day += 1
+     @day += 1
+   elsif @day == 0 # this is d/t the sched. starting at 8pm on day 1
+     @day = 1
    else
-     day
+     @day
    end
-
-   if day == 0 # this is d/t the sched. starting at 8pm on day 1
-     day = 1
-   end
-   @date = Time.parse("#{month} #{day}").strftime("%B %d %A")
+   @date = Time.parse("#{@month} #{@day}").strftime("%B %d %A")
   end
 
   def self.scrape_genre_page
