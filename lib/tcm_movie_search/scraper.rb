@@ -55,7 +55,7 @@ class TcmMovieSearch::Scraper
    else
      @day
    end
-   @date = Time.parse("#{@month} #{@day}").strftime("%B %d %A")
+   @date = Time.parse("#{@month} 1").strftime("%B %d %A")
   end
 
   def self.scrape_genre_page
