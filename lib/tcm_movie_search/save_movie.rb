@@ -9,7 +9,9 @@ class TcmMovieSearch::SaveMovie
     puts "Save movie?\n 'y' or 'n'"
     user_choice = gets.strip
     case user_choice.downcase
-    when 'y' || 'yes'
+    when "y"
+      TcmMovieSearch::SaveMovie.save_movie
+    when "yes"
       TcmMovieSearch::SaveMovie.save_movie
     else
       TcmMovieSearch::CLI.call
