@@ -12,7 +12,7 @@ class TcmMovieSearch::Scraper
     doc = data_scraper(SITE)
     movies = doc.css("h2 a")
 
-    @counter = 0
+    @counter = 1
     @day = 0
     @month = Date.today.strftime("%B")
     @year = Date.today.strftime("%Y")
