@@ -20,9 +20,10 @@ class TcmMovieSearch::Search
  end
 
  def self.search(keyword)
+   puts "search results for ".blue + "#{keyword.underline}:"
     TcmMovieSearch::Movies.all.each.with_index do |data, index|
       if data.inspect.downcase.include?(keyword.downcase)
-        puts "search results for ".blue + "#{keyword.underline}:"
+        # puts "search results for ".blue + "#{keyword.underline}:"
         puts "\nindex: #{index}\n" + "#{data.to_yaml}".blue
       end
     end
