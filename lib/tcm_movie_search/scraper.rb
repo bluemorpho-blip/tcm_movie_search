@@ -50,12 +50,12 @@ class TcmMovieSearch::Scraper
   def self.build_date
     if (@time.include?("8:") && @time.include?("PM"))
      @day += 1
-   elsif @day == 0 # this is d/t the sched. starting at 8pm on day 1
-     @day = 1
+     @date = Time.parse("#{@month} #{@day}").strftime("%B %d %A")
+   elsif @day == 0
+     @date = Time.parse("#{@month} 1").strftime("%B %d %A")
    else
-     @day
+     @date = Time.parse("#{@month} #{@day}").strftime("%B %d %A")
    end
-   @date = Time.parse("#{@month} 1").strftime("%B %d %A")
   end
 
   def self.scrape_genre_page
