@@ -13,8 +13,13 @@ class TcmMovieSearch::SaveMovie
       TcmMovieSearch::SaveMovie.save_movie
     when "yes"
       TcmMovieSearch::SaveMovie.save_movie
-    else
+    when "n"
       TcmMovieSearch::CLI.call
+    when "no"
+      TcmMovieSearch::CLI.call
+    else
+      puts "not a valid choice, please try again"
+      save_option
     end
   end
 

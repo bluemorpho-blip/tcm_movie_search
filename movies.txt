@@ -1,0 +1,24 @@
+[0;34;49m---
+- !ruby/object:TcmMovieSearch::Movies
+  date: October 18 Friday
+  time: 5:45 PM
+  title: McLintock!
+  year_released: '1963'
+  description: A cattle baron fights to tame the West and his estranged wife.
+  cast: |-
+    Andrew V. McLaglen
+
+    John Wayne
+
+    Maureen O'Hara
+
+    Patrick Wayne
+  runtime: 122 mins
+  link: http://www.tcm.com/tcmdb/title/83151/McLintock-/
+  genre_1: |-
+    Genre:
+    Comedy
+  genre_2: |-
+    Genre:
+    Western
+[0m
